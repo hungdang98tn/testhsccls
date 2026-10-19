@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn Tập Trắc Nghiệm Hồi Sức Cấp Cứu (HSCC)</title>
+    <title>Ôn Tập Trắc Nghiệm Cấp Cứu & Sinh Lý Lâm Sàng (120 Câu Chuẩn)</title>
     <style>
         :root {
             --primary: #0056b3;
@@ -89,13 +89,6 @@
             transform: scale(0.98);
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-
         .jump-container {
             display: flex;
             align-items: center;
@@ -104,7 +97,7 @@
         }
 
         .jump-container input {
-            width: 50px;
+            width: 60px;
             padding: 5px;
             border: 1px solid var(--border);
             border-radius: 4px;
@@ -255,18 +248,17 @@
 
 <div class="quiz-container">
     <div class="header">
-        <h1 class="title">Ôn Tập Hồi Sức Cấp Cứu</h1>
+        <h1 class="title">Ôn Tập HSCC & Sinh Lý Lâm Sàng (120 Câu)</h1>
         <div class="controls-top">
-            <button class="btn btn-secondary" onclick="shuffleQuestions()">🔀 Trộn câu hỏi</button>
             <div class="jump-container">
-                <span>Câu:</span>
-                <input type="number" id="jumpInput" min="1" onchange="jumpToQuestion()">
+                <span>Chuyển câu:</span>
+                <input type="number" id="jumpInput" min="1" max="120" onchange="jumpToQuestion()">
             </div>
         </div>
     </div>
 
     <div class="question-card">
-        <div class="question-meta" id="questionMeta">Câu 1 / 0</div>
+        <div class="question-meta" id="questionMeta">Câu 1 / 120</div>
         <div class="question-text" id="questionText">Đang tải dữ liệu...</div>
         
         <div class="options-list" id="optionsContainer"></div>
@@ -287,9 +279,8 @@
 </div>
 
 <script>
-// KHỞI TẠO MẢNG CƠ SỞ DỮ LIỆU CÂU HỎI
+// CƠ SỞ DỮ LIỆU CÂU HỎI THEO ĐÚNG THỨ TỰ LOGIC (120 CÂU)
 let questionsDatabase = [
-    // --- BẮT ĐẦU PHẦN 1 (CÂU 1 - 25) ---
     {
         id: 1,
         source: "LS HSCC CK1 2026 Đề 02 - Case 1.1",
@@ -300,7 +291,7 @@ let questionsDatabase = [
             "C. Sử dụng adrenaline trong vòng 3 phút đầu",
             "D. Đặt nội khí quản sớm tại hiện trường"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Khuyến cáo của Hiệp hội Tim mạch Hoa Kỳ (AHA) nhấn mạnh mạnh mẽ rằng, đối với các trường hợp ngừng tuần hoàn ngoại viện có nhịp rung thất hoặc nhanh thất, việc tiếp cận bệnh nhân và thực hiện sốc điện phá rung sớm (đặc biệt trong vòng 3 đến 5 phút đầu tiên) là yếu tố độc lập mang tính quyết định sống còn cao nhất."
     },
     {
@@ -313,7 +304,7 @@ let questionsDatabase = [
             "C. Vẫn ép tim kết hợp thổi ngạt theo chu kỳ 30:2",
             "D. Chờ nhân viên y tế đến"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Để giảm thiểu rào cản tâm lý e ngại lây nhiễm bệnh và tránh làm gián đoạn việc ép tim bởi những người không thuần thục kỹ năng thổi ngạt, AHA khuyến cáo người cứu hộ không chuyên hoặc không có dụng cụ bảo hộ chỉ cần thực hiện ép tim liên tục tay không (Hands-only CPR)."
     },
     {
@@ -326,46 +317,46 @@ let questionsDatabase = [
             "C. Đặt nội khí quản sớm, vận chuyển đến ICU",
             "D. Bắt đầu hạ thân nhiệt tích cực tại chỗ"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Bệnh nhân sau khi có mạch trở lại nhưng tri giác lơ mơ và tụt huyết áp, suy hô hấp không đáp ứng với oxy gọng kính, chứng tỏ chức năng hô hấp và khả năng bảo vệ đường thở không đảm bảo. Đặt nội khí quản là can thiệp thiết yếu ngay lúc này."
     },
     {
         id: 4,
         source: "LS HSCC CK1 2026 Đề 02 - Case 2.1",
-        question: "Bệnh nhân nam 81 tuổi, tiền sử tăng huyết áp điều trị không thường xuyên, vào viện vì đột quỵ chảy máu não. Khám: GCS 12 điểm, HA: 160/90 mmHg, TST: 90 ck/ph.\n\nĐiều trị nào sau đây có thể hạn chế tăng thể tích khối máu tụ?",
+        question: "Bệnh nhân nam 81 tuổi, tiền sử tăng huyết áp điều trị không thường xuyên, vào viện vì đột quỵ chảy máu脑. Khám: GCS 12 điểm, HA: 160/90 mmHg, TST: 90 ck/ph.\n\nĐiều trị nào sau đây có thể hạn chế tăng thể tích khối máu tụ?",
         options: [
             "A. Manitol",
             "B. Kiểm soát huyết áp tâm thu dưới 180 mmHg",
             "C. Mổ sọ lấy máu tụ",
             "D. Dùng các thuốc cầm máu"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Đối với xuất huyết phát, kiểm soát huyết áp nội khoa tích cực (thường < 140-180 mmHg tùy phác đồ) là biện pháp cốt lõi để ngăn khối máu tụ tiếp tục lan rộng."
+        correct: 1,
+        explanation: "Đáp án B. Đối với xuất huyết脑 tự phát, kiểm soát huyết áp nội khoa tích cực (thường < 140-180 mmHg tùy phác đồ) là biện pháp cốt lõi để ngăn khối máu tụ tiếp tục lan rộng."
     },
     {
         id: 5,
         source: "LS HSCC CK1 2026 Đề 02 - Case 2.2",
-        question: "Sau 24h điều trị tại khoa cấp cứu, ý thức của bệnh nhân xấu đi, khám GCS: 7 điểm. Bệnh nhân được chụp lại phim CT sọ não có thể tích khối máu tụ tăng lên so với phim cũ, có nhiều máu trong não thất bên và thất 3, có giãn não thất cấp. Biện pháp điều trị nào sau đây phù hợp với bệnh nhân:",
+        question: "Sau 24h điều trị tại khoa cấp cứu, ý thức của bệnh nhân xấu đi, khám GCS: 7 điểm. Bệnh nhân được chụp lại phim CT sọ脑 có thể tích khối máu tụ tăng lên so với phim cũ, có nhiều máu trong脑 thất bên và thất 3, có giãn脑 thất cấp. Biện pháp điều trị nào sau đây phù hợp với bệnh nhân:",
         options: [
             "A. Mở sọ giảm áp",
-            "B. Dẫn lưu脑thất/não thất ra ngoài",
+            "B. Dẫn lưu脑 thất ra ngoài",
             "C. Dùng mannitol",
             "D. Dùng thuốc cầm máu"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Biến chứng máu tràn脑thất/não thất gây giãn脑thất/não thất cấp là một cấp cứu ngoại khoa thần kinh, chỉ định ưu tiên lúc này là chọc dẫn lưu dịch脑tủy/não tủy ra ngoài (EVD) để giải áp lực nội sọ cấp tính."
+        correct: 1,
+        explanation: "Đáp án B. Biến chứng máu tràn脑 thất gây giãn脑 thất cấp là một cấp cứu ngoại khoa thần kinh, chỉ định ưu tiên lúc này là chọc dẫn lưu dịch脑 tủy ra ngoài (EVD) để giải áp lực nội sọ cấp tính."
     },
     {
         id: 6,
         source: "LS HSCC CK1 2026 Đề 02 - Case 3.1",
-        question: "Bệnh nhân nam 79 tuổi, tiền sử tăng huyết áp, đái tháo đường type 2 điều trị đều. Trước vào viện 2h bệnh nhân đột ngột xuất hiện yếu nửa người phải. Khám: GCS 14 đ, liệt 1/2 người P, cơ lực 3/5, HA: 190/120 mmHg, TST: 110 ck/ph, SpO2: 97%. Glucose: 15 mmol/L; kết quả chụp CT sọ não của BN bình thường. Bệnh nhân được chẩn đoán: Đột quỵ nhồi máu não giờ thứ 2.5 NIHSS 8 điểm và được chỉ định dùng thuốc tiêu sợi huyết.\n\nMục tiêu kiểm soát huyết áp ở bệnh nhân này trước khi tiêu sợi huyết là:",
+        question: "Bệnh nhân nam 79 tuổi, tiền sử tăng huyết áp, đái tháo đường type 2 điều trị đều. Trước vào viện 2h bệnh nhân đột ngột xuất hiện yếu nửa người phải. Khám: GCS 14 đ, liệt 1/2 người P, cơ lực 3/5, HA: 190/120 mmHg, TST: 110 ck/ph, SpO2: 97%. Glucose: 15 mmol/L; kết quả chụp CT sọ脑 của BN bình thường. Bệnh nhân được chẩn đoán: Đột quỵ nhồi máu脑 giờ thứ 2.5 NIHSS 8 điểm và được chỉ định dùng thuốc tiêu sợi huyết.\n\nMục tiêu kiểm soát huyết áp ở bệnh nhân này trước khi tiêu sợi huyết là:",
         options: [
             "A. Huyết áp tâm thu < 185 mmHg và huyết áp tâm trương < 110 mmHg",
             "B. Huyết áp tâm thu < 170 mmHg và huyết áp tâm trương < 120 mmHg",
             "C. Huyết áp tâm thu < 160 mmHg và huyết áp tâm trương < 110 mmHg",
             "D. Huyết áp tâm thu < 140 mmHg và huyết áp tâm trương < 90 mmHg"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Theo hướng dẫn điều trị đột quỵ của Hiệp hội Đột quỵ Hoa Kỳ, huyết áp phải được hạ một cách thận trọng và duy trì dưới 185/110 mmHg trước khi bắt đầu truyền thuốc tiêu sợi huyết để giảm thiểu rủi ro biến chứng xuất huyết chuyển dạng."
     },
     {
@@ -378,7 +369,7 @@ let questionsDatabase = [
             "C. Atenolol",
             "D. Valsartan"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Trong cấp cứu đột quỵ, Nicardipin truyền tĩnh mạch liên tục là thuốc chẹn kênh canxi được ưu tiên sử dụng do khả năng kiểm soát huyết áp nhanh chóng, trơn tru và dễ chuẩn độ liều."
     },
     {
@@ -391,7 +382,7 @@ let questionsDatabase = [
             "C. Ngay sau khi tiêu sợi huyết",
             "D. Ngay sau khi kết thúc dùng thuốc hạ huyết áp đường tĩnh mạch"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Khuyến cáo quốc tế cấm tuyệt đối việc sử dụng bất kỳ thuốc chống huyết khối hay thuốc đường uống nào trong vòng 24 giờ sau khi truyền tiêu sợi huyết để ngăn ngừa chảy máu ồ ạt."
     },
     {
@@ -399,13 +390,13 @@ let questionsDatabase = [
         source: "LS HSCC CK1 2026 Đề 02 - Case 5.1",
         question: "Bệnh nhân nữ 52 tuổi vào viện vì rối loạn ý thức. Khám: Glasgow 12, M 120 ck/ph, Huyết áp 120/70 mmHg, da niêm mạc khô, không có dấu hiệu thần kinh khu trú. Na 128 mmol/L; K+ 4.5 mmol/L; Cl- 94 mmol/L; glucose 45 mmol/L.\n\nHôn mê ở bệnh nhân này có thể do những nguyên nhân sau, TRỪ:",
         options: [
-            "A. Đột quỵ brain/não cấp",
+            "A. Đột quỵ脑 cấp",
             "B. Hạ natri máu",
             "C. Hôn mê do tăng áp lực thẩm thấu",
             "D. Hôn mê do nhiễm toan ceton"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Dấu hiệu lâm sàng không có dấu hiệu thần kinh khu trú giúp loại trừ bước đầu chẩn đoán đột quỵ brain/não cấp gây tổn thương khu trú. Các nguyên nhân chuyển hóa như hạ Natri máu, tăng áp lực thẩm thấu hay nhiễm toan ceton đều trực tiếp gây giảm ý thức và hôn mê."
+        correct: 0,
+        explanation: "Đáp án A. Dấu hiệu lâm sàng không có dấu hiệu thần kinh khu trú giúp loại trừ bước đầu chẩn đoán đột quỵ脑 cấp gây tổn thương khu trú. Các nguyên nhân chuyển hóa như hạ Natri máu, tăng áp lực thẩm thấu hay nhiễm toan ceton đều trực tiếp gây giảm ý thức và hôn mê."
     },
     {
         id: 10,
@@ -417,7 +408,7 @@ let questionsDatabase = [
             "C. Truyền dung dịch natriclorua đẳng trương và insulin",
             "D. Cho bệnh nhân uống demeclocycline"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Hạ natri máu trong bối cảnh đường huyết cao ngất ngưởng là hạ natri nhược trương giả tạo do glucose kéo nước ra ngoại bào làm pha loãng natri; phương pháp điều trị chuẩn là bù dịch bằng dung dịch muối đẳng trương kết hợp truyền Insulin tĩnh mạch để kiểm soát đường huyết, khi đó nồng độ natri máu sẽ tự động điều chỉnh."
     },
     {
@@ -430,7 +421,7 @@ let questionsDatabase = [
             "C. Đầu bằng, thở oxy",
             "D. Kháng sinh"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh nhân có sốc nhiễm khuẩn rõ. Bước cơ học đầu tiên trong gói 1 giờ hồi sức sốc nhiễm khuẩn là truyền nhanh dịch tinh thể với liều 30ml/kg để bồi phụ thể tích tuần hoàn."
     },
     {
@@ -443,25 +434,116 @@ let questionsDatabase = [
             "C. Dopamin",
             "D. Dobutamin"
         ],
-        correct: 3, // D
+        correct: 3,
         explanation: "Đáp án D. Dobutamin là thuốc tăng co bóp cơ tim nhưng gây giãn mạch ngoại vi, do đó chống chỉ định dùng đơn độc khi huyết áp đang tụt sâu trong sốc nhiễm khuẩn."
     },
     {
         id: 13,
+        source: "LS HSCC CK1 2026 Đề 02 - Case 10.1",
+        question: "Mục tiêu SpO2 tối ưu cho bệnh nhân COPD đợt cấp mức độ trung bình thở gọng mũi là bao nhiêu?",
+        options: [
+            "A. 94 - 98%",
+            "B. 88 - 92%",
+            "C. 85 - 88%",
+            "D. Trên 92%"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Theo GOLD, mục tiêu SpO2 an toàn nhất ở bệnh nhân đợt cấp COPD là 88-92% để cân bằng giữa cung cấp oxy và tránh ức chế trung tâm hô hấp làm ứ đọng CO2 máu."
+    },
+    {
+        id: 14,
+        source: "LS HSCC CK1 2026 Đề 02 - Case 10.2",
+        question: "Bệnh nhân không đáp ứng tốt với điều trị ban đầu, khó thở tăng và bắt đầu lơ mơ. Khí máu động mạch lần 2: pH 7.24, PaCO2 75 mmHg, PaO2 60 mmHg. Hướng xử trí tiếp theo là gì?",
+        options: [
+            "A. Tiếp tục thở NIV và tăng IPAP",
+            "B. Tăng lưu lượng oxy qua gọng mũi",
+            "C. Đặt nội khí quản và thở máy xâm nhập (IMV)",
+            "D. Truyền Theophylline tĩnh mạch"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Bệnh nhân xuất hiện rối loạn ý thức (lơ mơ) kết hợp với toan hô hấp nặng (pH 7.24 < 7.25, PaCO2 75 mmHg) là những chống chỉ định tuyệt đối của thở máy không xâm nhập (NIV) và là chỉ định tuyệt đối để đặt nội khí quản thở máy xâm nhập nhằm bảo vệ đường thở và thải CO2 tích cực."
+    },
+    {
+        id: 15,
+        source: "LS HSCC CK1 2026 Đề 02 - Case 10.3",
+        question: "Sau khi đặt nội khí quản cho bệnh nhân, thông số máy thở ban đầu nào sau đây là phù hợp nhất để tránh các biến chứng như auto-PEEP?",
+        options: [
+            "A. Tần số thở 20-22 lần/phút, I:E = 1:2",
+            "B. Tidal Volume (Vt) 10 mL/kg, PEEP 10 cmH2O",
+            "C. Tần số thở 12-15 lần/phút, I:E = 1:3 - 1:4",
+            "D. Chế độ kiểm soát áp lực (PCV) với áp lực đỉnh 35 cmH2O"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Ở bệnh nhân COPD có tắc nghẽn đường thở nhỏ, nguy cơ ứ khí phế nang (auto-PEEP) rất cao, do đó nguyên tắc thở máy là phải cho đủ thời gian thở ra bằng cách cài đặt tần số thở thấp (12-15 l/p) và kéo dài tỷ lệ thì hít vào/thở ra (I:E = 1:3 hoặc 1:4)."
+    },
+    {
+        id: 16,
+        source: "LS HSCC CK1 2026 Đề 02 - Case 10.4",
+        question: "BN được dùng Prednisolone 40mg/ngày đường toàn thân. Theo khuyến cáo hiện nay, thời gian điều trị corticosteroid toàn thân tối ưu là bao nhiêu?",
+        options: [
+            "A. 3 ngày",
+            "B. 5 - 7 ngày",
+            "C. 10 - 14 ngày",
+            "D. Cho đến khi hết hoàn toàn triệu chứng"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Liệu trình corticosteroid ngắn ngày (5 đến 7 ngày) trong đợt cấp COPD là đủ để kiểm soát phản ứng viêm hiệu quả mà hạn chế tối đa tác dụng phụ toàn thân."
+    },
+    {
+        id: 17,
+        source: "LS HSCC CK1 2026 Đề 02 - Case 11",
+        question: "Bệnh nhân nam, COPD nhóm Gold E, vào viện 2 đợt cấp/năm. Đợt này ho, khó thở tăng dần, khạc đờm vàng đục (đờm màu xanh), nhịp thở 28 lần/phút, SpO2 87%. Lựa chọn thuốc điều trị nội khoa phù hợp nhất:",
+        options: [
+            "A. Levofloxacin IV truyền tĩnh mạch kết hợp với Methylprednisolon tiêm tĩnh mạch",
+            "B. Ceftriaxone tiêm tĩnh mạch chậm, không dùng corticoid",
+            "C. Amoxicillin/Clavulanic kết hợp Methylprednisolon uống",
+            "D. Kháng sinh không kèm Corticoid"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Đợt cấp COPD nghi ngờ do Trực khuẩn mủ xanh cần sử dụng kháng sinh có phổ bao phủ được vi khuẩn này như Levofloxacin liều cao. Đồng thời, đợt cấp nặng luôn có chỉ định dùng Corticoid đường toàn thân ngắn ngày để giảm viêm đường thở."
+    },
+    {
+        id: 18,
+        source: "LS HSCC CK1 2026 Đề 02 - Câu 12",
+        question: "Biến chứng sớm của xuất huyết dưới nhện không phải là:",
+        options: [
+            "A. Co thắt mạch",
+            "B. Giãn脑 thất",
+            "C. Hạ natri máu",
+            "D. Thiếu máu"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Co thắt mạch máu脑 và giãn脑 thất cấp là những biến chứng cơ học rất sớm và nguy hiểm của xuất huyết dưới nhện. Hạ Natri máu thường là biến chứng chuyển hóa xuất hiện muộn hơn sau vài ngày."
+    },
+    {
+        id: 19,
         source: "LS HSCC CK1 2026 Đề 03 - Case 1.1",
-        question: "Bệnh nhân được cho dùng liều đầu Amoxicillin-acid clavulanic do nghi ngờ nhiễm trùng. Sau 30 phút thấy mặt đỏ bừng nhưng không rõ mày đay phù mạch, HA tụt 75/40, sau đó truyền 1 lít dịch thì lên 80/40. Xét nghiệm PCT 15.\n\nChẩn đoán nghỉ đến nhiều nhất là gì?",
+        question: "Bệnh nhân được cho dùng liều đầu Amoxicillin-acid clavulanic do nghi ngờ nhiễm trùng. Sau 30 phút thấy mặt đỏ bừng nhưng không rõ mày đay phù mạch, HA tụt 75/40, sau đó truyền 1 lít dịch thì lên 80/40. Xét nghiệm PCT 15.\n\nChẩn đoán nghĩ đến nhiều nhất là gì?",
         options: [
             "A. Sốc nhiễm khuẩn",
             "B. Cả sốc nhiễm khuẩn và sốc phản vệ",
             "C. Sốc phản vệ do thời gian tiếp xúc dị nguyên 30 phút mặc dù PCT cao",
             "D. Phản ứng sau dùng kháng sinh"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh nhân có PCT 15 chứng tỏ đang có tình trạng nhiễm khuẩn nặng từ trước. Tuy nhiên, sự xuất hiện đột ngột của triệu chứng đỏ bừng mặt và tụt huyết áp sâu ngay sau 30 phút truyền kháng sinh, không đáp ứng với bù dịch, là dấu hiệu cảnh báo phản vệ. Do đó, trên lâm sàng phải nghĩ đến và xử trí đồng thời cả hai tình trạng."
     },
     {
-        id: 14,
+        id: 20,
         source: "LS HSCC CK1 2026 Đề 03 - Case 1.2",
+        question: "Phân biệt sốc nhiễm khuẩn và sốc phản vệ ở bệnh nhân này dựa vào:",
+        options: [
+            "A. Thời gian diễn biến ngắn sau tiếp xúc với dị nguyên",
+            "B. Sốt",
+            "C. Pct",
+            "D. Tụt huyết áp"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Đặc điểm then chốt để nhận diện sốc phản vệ trên nền một bệnh nhân đang nhiễm trùng là sự xuất hiện đột ngột và nhanh chóng của các triệu chứng ngay sau khi tiếp xúc với dị nguyên."
+    },
+    {
+        id: 21,
+        source: "LS HSCC CK1 2026 Đề 03 - Case 1.3",
         question: "Hướng điều trị tiếp theo là gì?",
         options: [
             "A. Adrenalin tiêm bắp ngay",
@@ -469,11 +551,11 @@ let questionsDatabase = [
             "C. Dùng kháng sinh mạnh hơn",
             "D. Dùng Noradrenalin"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Khi nghi ngờ có sốc phản vệ, hành động cứu mạng ưu tiên số một và không được trì hoãn là tiêm bắp Adrenalin ngay lập tức, bất kể bệnh nhân có đang kèm theo sốc nhiễm khuẩn hay không."
     },
     {
-        id: 15,
+        id: 22,
         source: "LS HSCC CK1 2026 Đề 03 - Case 2.1",
         question: "Bệnh nhân nam 60 tuổi COPD, vào viện vì đợt nhiễm trùng cấp, cấy máu trực khuẩn mủ xanh. Salbutamol 2mg/d. Hiện tại ngày 3, thở máy VCV, 38,5 độ C, thở 130 lần/phút, HA 130/90. Pre albumin 0,08. Na/K 131/3,1 mmol/L. Áp lực bình nguyên là 34 cmH2O.\n\nÁp lực bình nguyên 34 cmH2O thể hiện điều gì?",
         options: [
@@ -482,11 +564,11 @@ let questionsDatabase = [
             "C. Viêm phổi bệnh viện",
             "D. Tắc đờm"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Áp lực bình nguyên phản ánh áp lực phế nang ở cuối thì hít vào. Mức an toàn là dưới 30 cmH2O. Khi áp lực này tăng cao lên 34 cmH2O, phế nang bị căng giãn quá mức, nguy cơ rất cao gây chấn thương áp lực và tổn thương phổi do thở máy."
     },
     {
-        id: 16,
+        id: 23,
         source: "LS HSCC CK1 2026 Đề 03 - Case 2.2",
         question: "Nên làm gì tiếp theo?",
         options: [
@@ -495,11 +577,63 @@ let questionsDatabase = [
             "C. Tăng PEEP",
             "D. Dùng thuốc giãn phế quản"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Khi áp lực bình nguyên tăng quá cao trong mode VCV, biện pháp xử trí là phải giảm thể tích lưu thông hoặc chuyển sang mode PCV để khống chế áp lực đỉnh và áp lực bình nguyên dưới ngưỡng nguy hiểm, bảo vệ phổi."
     },
     {
-        id: 17,
+        id: 24,
+        source: "LS HSCC CK1 2026 Đề 03 - Case 2.3",
+        question: "Bệnh nhân có Pre-albumin hạ trên nền sốc nhiễm khuẩn, hỏi ý nghĩa của việc hạ đó là gì?",
+        options: [
+            "A. Suy dinh dưỡng và đáp ứng viêm hệ thống mạnh",
+            "B. Không có ý nghĩa trong cấp cứu",
+            "C. Đào thải protein qua thận",
+            "D. Suy gan cấp"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Pre-albumin là một protein phản ứng pha cấp âm tính có thời gian bán hủy ngắn, giảm mạnh khi có đáp ứng viêm hệ thống dữ dội kèm suy dinh dưỡng cấp."
+    },
+    {
+        id: 25,
+        source: "LS HSCC CK1 2026 Đề 03 - Case 2.4",
+        question: "Bệnh nhân đợt cấp COPD đang truyền Salbutamol, có Na 128, K 3,1. Hỏi nguyên nhân hạ Kali do đâu?",
+        options: [
+            "A. Suy dinh dưỡng",
+            "B. Do truyền Salbutamol",
+            "C. Do dùng Corticoid",
+            "D. Hội chứng SIADH"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Salbutamol kích thích bơm Na-K-ATPase đẩy Kali từ ngoại bào vào trong tế bào, gây hạ Kali máu."
+    },
+    {
+        id: 26,
+        source: "LS HSCC CK1 2026 Đề 03 - Case 3.1",
+        question: "Bệnh nhân gù vẹo cột sống, đột ngột ngừng tuần hoàn đã cấp cứu ngừng tuần hoàn có mạch trở lại sau đó được chuyển đến Bệnh viện Bạch Mai. Xét nghiệm pH 6,95, HCO3- 12,2.\nRối loạn toan kiềm ở bệnh nhân này là gì?",
+        options: [
+            "A. Toan chuyển hóa đơn thuần",
+            "B. Toan hỗn hợp",
+            "C. Toan hô hấp đơn thuần",
+            "D. Kiềm chuyển hóa"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân có pH 6.95, HCO3- 12.2 là toan chuyển hóa do ngừng tuần hoàn sinh acid lactic. Tuy nhiên, trên nền bệnh nhân gù vẹo cột sống hạn chế hô hấp mạn tính và vừa ngừng thở, chắc chắn có ứ đọng CO2 máu gây toan hô hấp. Sự kết hợp này tạo ra toan hỗn hợp."
+    },
+    {
+        id: 27,
+        source: "LS HSCC CK1 2026 Đề 03 - Case 3.2",
+        question: "Xử trí tiếp theo ở bệnh nhân này là gì?",
+        options: [
+            "A. Đặt nội khí quản thở máy, truyền Natribicarbonat 4,2%",
+            "B. Truyền dịch nhanh",
+            "C. Dùng kháng sinh",
+            "D. Thở oxy mask"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Bệnh nhân toan máu cực kỳ nặng đe dọa truy tim mạch tái phát. Xử trí bắt buộc là phải đặt nội khí quản thở máy để giải quyết toan hô hấp và truyền tĩnh mạch Natribicarbonat để trung hòa toan chuyển hóa."
+    },
+    {
+        id: 28,
         source: "LS HSCC CK1 2026 Đề 04 - Case 1.1",
         question: "Bệnh nhân sau tiêm kháng sinh Cephalosporin tĩnh mạch 5 phút, HA 70/50, mạch 130, SpO2 88%, thở 28.\n\nChỉ định đầu tiên là gì?",
         options: [
@@ -508,11 +642,11 @@ let questionsDatabase = [
             "C. Thở oxy",
             "D. Truyền dịch"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh cảnh tụt huyết áp ngay sau tiêm kháng sinh là sốc phản vệ độ 3. Hành động cứu mạng ưu tiên số một là tiêm Adrenalin ngay lập tức."
     },
     {
-        id: 18,
+        id: 29,
         source: "LS HSCC CK1 2026 Đề 04 - Case 1.2",
         question: "Đường và liều Adrenaline sử dụng như thế nào?",
         options: [
@@ -521,11 +655,11 @@ let questionsDatabase = [
             "C. Adrenaline 1/2 ống, tiêm bắp đùi",
             "D. Khí dung"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Theo phác đồ cấp cứu phản vệ của Bộ Y tế, đường dùng bắt buộc và nhanh nhất của Adrenalin là tiêm bắp mặt trước bên đùi, liều người lớn thường là nửa ống."
     },
     {
-        id: 19,
+        id: 30,
         source: "LS HSCC CK1 2026 Đề 04 - Case 1.3",
         question: "Các chỉ số sinh tồn bệnh nhân trở lại bình thường, tại sao vẫn phải theo dõi tại cơ sở y tế 24h?",
         options: [
@@ -534,11 +668,11 @@ let questionsDatabase = [
             "C. Để truyền hết liều kháng sinh",
             "D. Theo dõi chức năng gan thận"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Sốc phản vệ có thể tái phát các triệu chứng nguy kịch sau khi đã ổn định từ 8 đến 24 giờ mà không cần tiếp xúc lại với dị nguyên. Do đó bắt buộc phải theo dõi tại viện ít nhất 24 giờ."
     },
     {
-        id: 20,
+        id: 31,
         source: "LS HSCC CK1 2026 Đề 04 - Case 3.1",
         question: "Bệnh nhân có tiền sử COPD Gold E. Đợt này bệnh nhân vào viện vì đợt cấp của COPD với biểu hiện ho, khó thở tăng, nhiều đờm, đờm chuyển màu xanh, SpO2 89%.\n\nTheo tiêu chuẩn của Anthonisen, mức độ nặng của đợt cấp COPD bệnh nhân đợt này là:",
         options: [
@@ -547,11 +681,11 @@ let questionsDatabase = [
             "C. Mức độ nặng",
             "D. Mức độ rất nặng"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Bệnh nhân có đủ 3 triệu chứng chính theo tiêu chuẩn Anthonisen là khó thở tăng, khạc đờm tăng, và đờm chuyển màu mủ. Có đủ 3 triệu chứng được phân loại là đợt cấp mức độ nặng."
     },
     {
-        id: 21,
+        id: 32,
         source: "LS HSCC CK1 2026 Đề 04 - Case 3.2",
         question: "Kết quả khí máu của bệnh nhân là pH 7,38, PCO2 58 mmHg, PO2 55 mmHg, HCO3- 28. Cần phải làm cho bệnh nhân là:",
         options: [
@@ -560,11 +694,11 @@ let questionsDatabase = [
             "C. Thở mask Venturi 40%",
             "D. Thở oxy gọng kính 4 lít/phút"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh nhân có toan hô hấp nhưng pH vẫn còn bù, kèm giảm oxy máu. Chỉ định tối ưu nhất lúc này là thở máy không xâm nhập để hỗ trợ công hô hấp, giảm PCO2 và cải thiện oxy hóa máu mà tránh được việc đặt ống nội khí quản."
     },
     {
-        id: 22,
+        id: 33,
         source: "LS HSCC CK1 2026 Đề 04 - Case 3.3",
         question: "Nếu kết quả khí máu PCO2 là 58 mmHg, bệnh nhân toan hô hấp thì pH của bệnh nhân phải bằng bao nhiêu? (pH ban đầu của bệnh nhân 7,38)",
         options: [
@@ -573,11 +707,24 @@ let questionsDatabase = [
             "C. 7,18",
             "D. 7,3"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Trong toan hô hấp cấp tính, cứ PaCO2 tăng 10 mmHg thì pH giảm 0,08. PaCO2 tăng từ 40 lên 58, do đó pH sẽ giảm 1,8 nhân 0,08 bằng 0,144. Lấy pH chuẩn 7,40 trừ 0,144 bằng 7,256 làm tròn 7,26."
     },
     {
-        id: 23,
+        id: 34,
+        source: "LS HSCC CK1 2026 Đề 04 - Case 3.4",
+        question: "Bệnh nhân COPD, nếu toan hô hấp cấp thì pH giảm bao nhiêu khi pCO2 tăng 10 mmHg?",
+        options: [
+            "A. Giảm 0,03",
+            "B. Giảm 0,08",
+            "C. Giảm 0,1",
+            "D. Giảm 0,12"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Theo quy luật bù trừ toan kiềm, trong toan hô hấp cấp tính khi thận chưa kịp bù trừ, cứ mỗi 10 mmHg PaCO2 tăng lên sẽ làm pH máu giảm đi 0.08. Nếu là toan hô hấp mạn tính, pH chỉ giảm 0.03."
+    },
+    {
+        id: 35,
         source: "LS HSCC CK1 2026 Đề 04 - Case 4",
         question: "Kết quả xét nghiệm máu của bệnh nhân bạch cầu ái toan 50 tế bào/mm3, kháng sinh cần dùng cho bệnh nhân là:",
         options: [
@@ -586,11 +733,11 @@ let questionsDatabase = [
             "C. Kháng sinh uống + corticoid uống",
             "D. Kháng sinh tiêm + khí dung budesonide"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh nhân đợt cấp COPD có bạch cầu ái toan rất thấp dưới 100. Theo khuyến cáo của GOLD, mức này chỉ điểm tình trạng viêm không do bạch cầu ái toan, do đó việc sử dụng Corticoid toàn thân ít mang lại lợi ích. Lựa chọn ưu tiên là dùng kháng sinh mà không cần Corticoid."
     },
     {
-        id: 24,
+        id: 36,
         source: "LS HSCC CK1 2026 Đề 04 - Case 5.1",
         question: "Bệnh nhân NMN – 8 điểm NIHSS, HA 190, thời điểm khởi phát đột quỵ 2,5h, có chỉ định dùng tiêu sợi huyết.\n\nHuyết áp trước tiêu sợi huyết cần đạt là:",
         options: [
@@ -599,11 +746,11 @@ let questionsDatabase = [
             "C. 140/90 mmHg",
             "D. 160/100 mmHg"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Theo hướng dẫn của Hiệp hội Đột quỵ Hoa Kỳ, điều kiện tiên quyết trước khi truyền tiêu sợi huyết trong nhồi máu brain/não cấp là huyết áp phải được hạ và duy trì ổn định dưới 185/110 mmHg để giảm thiểu nguy cơ xuất huyết chuyển dạng."
+        correct: 0,
+        explanation: "Đáp án A. Theo hướng dẫn của Hiệp hội Đột quỵ Hoa Kỳ, điều kiện tiên quyết trước khi truyền tiêu sợi huyết trong nhồi máu脑 cấp là huyết áp phải được hạ và duy trì ổn định dưới 185/110 mmHg để giảm thiểu nguy cơ xuất huyết chuyển dạng."
     },
     {
-        id: 25,
+        id: 37,
         source: "LS HSCC CK1 2026 Đề 04 - Case 5.2",
         question: "Thuốc kiểm soát huyết áp ưu tiên là:",
         options: [
@@ -612,90 +759,50 @@ let questionsDatabase = [
             "C. Valsartan",
             "D. Amlodipin"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Trong cấp cứu đột quỵ, Nicardipin truyền tĩnh mạch là ưu tiên hàng đầu để hạ huyết áp nhanh, an toàn và dễ chỉnh liều."
     },
-    // --- PHẦN 2 (CÂU 26 - 50) ---
     {
-        id: 26,
-        source: "LS HSCC CK1 2026 Đề 04 - Case 6.1",
-        question: "Cấp cứu ngừng tuần hoàn. Điện tâm đồ nhịp nhanh, giãn rộng, không bắt được mạch. Trường hợp nào có thể xảy ra ở bệnh nhân?",
+        id: 38,
+        source: "LS HSCC CK1 2026 Đề 04 - Case 9.1",
+        question: "Bệnh nhân có tiền sử COPD có 4 đợt cấp / năm phải dùng kháng sinh liều cao. Đợt này bệnh nhân vào viện vì đợt cấp. Nguyên nhân hay nghĩ đến là:",
         options: [
-            "A. Vô tâm thu",
-            "B. Rung thất (hoặc Nhanh thất vô mạch)",
-            "C. Nhanh thất có mạch",
-            "D. PEA"
+            "A. Phế cầu",
+            "B. Trực khuẩn mủ xanh",
+            "C. Moraxella",
+            "D. HI"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Điện tâm đồ có nhịp nhanh, phức bộ QRS giãn rộng, kết hợp với lâm sàng không bắt được mạch là định nghĩa của Nhanh thất vô mạch hoặc Rung thất. Đây là các nhịp ngừng tuần hoàn có chỉ định sốc điện."
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân COPD có nhiều đợt cấp phải nhập viện và dùng kháng sinh liều cao nhiều lần trong năm là đối tượng nguy cơ rất cao nhiễm các vi khuẩn đa kháng, đặc biệt là Trực khuẩn mủ xanh (Pseudomonas aeruginosa)."
     },
     {
-        id: 27,
-        source: "LS HSCC CK1 2026 Đề 04 - Case 6.2",
-        question: "Sau 2 chu kỳ CPR + Adrenaline, bệnh nhân vẫn chưa ROSC. Siêu âm tim thấy thất Phải giãn rộng, đề đẩy vách liên thất sang Trái, không có tràn dịch màng ngoài tim. Xử trí gì tiếp theo?",
+        id: 39,
+        source: "LS HSCC CK1 2026 Đề 04 - Case 9.2",
+        question: "Theo kinh nghiệm, kháng sinh lựa chọn là:",
         options: [
-            "A. Ngừng cấp cứu. Truyền dịch nhanh, nghi thuyên tắc phổi (cân nhắc tiêu sợi huyết)",
-            "B. Đặt catheter Swan-Ganz",
-            "C. Sốc điện",
-            "D. Thở máy PEEP cao"
+            "A. Ceftriaxone",
+            "B. Levofloxacin IV",
+            "C. Amoxicillin/Clavulanic",
+            "D. Macrolid"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Hình ảnh siêu âm tim cấp cứu thấy thất phải giãn to, đề sập vách liên thất sang trái trong bối cảnh ngừng tuần hoàn là dấu hiệu đặc hiệu của Tắc động mạch phổi diện rộng. Xử trí cứu mạng lúc này là cân nhắc dùng thuốc tiêu sợi huyết ngay trong lúc cấp cứu ngừng tuần hoàn."
+        correct: 1,
+        explanation: "Đáp án B. Để bao phủ được Trực khuẩn mủ xanh, kháng sinh kinh nghiệm phải là nhóm Fluoroquinolone hô hấp liều cao hoặc các Beta-lactam kháng trực khuẩn mủ xanh."
     },
     {
-        id: 28,
-        source: "LS HSCC CK1 2026 Đề 04 - Case 6.3",
-        question: "Chống chỉ định tương đối của hạ thân nhiệt sau ROSC?",
-        options: [
-            "A. Ngừng tim sau sốc điện",
-            "B. Ngừng tim sau nhiễm khuẩn nặng",
-            "C. Ngừng tim sau đuối nước",
-            "D. Ngừng tim do nhồi máu cơ tim"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Hạ thân nhiệt chỉ huy có tác dụng phụ làm suy giảm miễn dịch và tăng nguy cơ nhiễm trùng. Do đó, ngừng tim do sốc nhiễm khuẩn nặng là một chống chỉ định tương đối của kỹ thuật này."
-    },
-    {
-        id: 29,
-        source: "LS HSCC CK1 2026 Đề 04 - Câu 7",
-        question: "Bệnh nhân viêm phổi cộng đồng, dùng kháng sinh, sau thời gian ngắn (5') thì thay đổi huyết động. Chẩn đoán là gì?",
-        options: [
-            "A. Sốc phản vệ do dùng kháng sinh",
-            "B. Sốc nhiễm khuẩn",
-            "C. Sốc tim",
-            "D. Phản ứng truyền dịch"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Sự thay đổi huyết động tụt huyết áp xảy ra quá nhanh chỉ 5 phút ngay sau khi tiêm truyền kháng sinh là dấu hiệu chỉ điểm kinh điển của sốc phản vệ."
-    },
-    {
-        id: 30,
-        source: "LS HSCC CK1 2026 Đề 04 - Câu 8",
-        question: "Bệnh nhân uống lợi tiểu furosemid, sau đó giảm 4kg, natri máu giảm do nguyên nhân nào?",
-        options: [
-            "A. Mất nước toàn phần",
-            "B. Mất nước nội bào, dư ngoại bào",
-            "C. Mất nước ngoại bào, dư nội bào",
-            "D. Thừa nước toàn bộ"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Việc dùng thuốc lợi tiểu quai gây sụt 4kg cân nặng cấp tính đồng nghĩa với việc mất 4 lít dịch toàn cơ thể kèm theo mất lượng lớn Natri qua nước tiểu. Đây là tình trạng mất nước và điện giải toàn bộ."
-    },
-    {
-        id: 31,
+        id: 40,
         source: "LS HSCC CK1 2026 Đề 04 - Case 10.1",
         question: "Một bệnh nhân nữ, 35 tuổi, đang trong quá trình điều trị nha khoa, được tiêm lidocaine để gây tê cục bộ. Khoảng 10 phút sau khi tiêm, bệnh nhân xuất hiện triệu chứng chóng mặt, ừ tai, co giật. Chẩn đoán có thể nghĩ tới ở bệnh nhân này là:",
         options: [
             "A. Phản vệ với thuốc gây tê",
             "B. Ngộ độc thuốc gây tê",
-            "C. Đột quỵ brain/não",
+            "C. Đột quỵ脑",
             "D. Cả A và B"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Bệnh nhân có biểu hiện thần kinh trung ương rõ rệt (chóng mặt, ù tai, co giật) xuất hiện nhanh sau khi tiêm thuốc tê nhóm amide (Lidocaine), đây là bệnh cảnh điển hình của hội chứng Ngộ độc toàn thân thuốc tê (LAST)."
     },
     {
-        id: 32,
+        id: 41,
         source: "LS HSCC CK1 2026 Đề 04 - Case 10.2",
         question: "Bước xử trí đầu tiên nào là quan trọng nhất trong trường hợp này?",
         options: [
@@ -704,11 +811,11 @@ let questionsDatabase = [
             "C. Đảm bảo đường thở và hỗ trợ hô hấp nếu cần",
             "D. Truyền dịch tĩnh mạch để tăng huyết áp"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Trong ngộ độc thuốc tê có biểu hiện co giật, ưu tiên hàng đầu là kiểm soát A-B-C, đặc biệt là đảm bảo đường thở và hỗ trợ thông khí (cung cấp oxy 100%) để tránh tình trạng thiếu oxy mô và toan máu làm ngộ độc thêm tồi tệ."
     },
     {
-        id: 33,
+        id: 42,
         source: "LS HSCC CK1 2026 Đề 04 - Case 10.3",
         question: "Thuốc ưu tiên dùng cho bệnh nhân này là:",
         options: [
@@ -717,11 +824,11 @@ let questionsDatabase = [
             "C. Lipid 20%",
             "D. Cần có kết quả CLVT sọ để xử trí"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Nhũ tương Lipid 20% tiêm tĩnh mạch là thuốc giải độc đặc hiệu (antidote) cứu sống bệnh nhân ngộ độc thuốc tê (LAST), hoạt động theo cơ chế tạo ra một \"bồn chứa lipid\" trong máu để hút phân tử thuốc tê hòa tan trong mỡ ra khỏi mô thần kinh và cơ tim."
     },
     {
-        id: 34,
+        id: 43,
         source: "LS HSCC CK1 2026 Đề 04 - Case 11.1",
         question: "Bệnh nhân nam, 54 tuổi, tiền sử đái tháo đường tuýp 2, vào viện trong tình trạng lơ mơ, Glasgow 13 điểm, sốt 38.9 độ C, đau thắt lưng, tiểu buốt, mạch nhanh, huyết áp tụt, toan chuyển hóa, pH: 7.3, pCO2: 31 mmHg, pO2: 67 mmHg, HCO3-: 16 mmol/l, lactat 4.2, dẫn lưu nước tiểu ra mủ. Bệnh nhân đầu tiên cần được xử trí như nào:",
         options: [
@@ -730,11 +837,11 @@ let questionsDatabase = [
             "C. Dẫn lưu bể thận",
             "D. Truyền dịch cao phân tử"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Bệnh nhân có sốc nhiễm khuẩn rõ. Bước cơ học đầu tiên trong gói 1 giờ hồi sức là truyền nhanh dịch tinh thể 30ml/kg để bồi phụ thể tích tuần hoàn."
     },
     {
-        id: 35,
+        id: 44,
         source: "LS HSCC CK1 2026 Đề 04 - Case 11.2",
         question: "Sau truyền 1 lít (1000ml) dịch tinh thể, huyết áp chưa nâng, cần được xử trí như thế nào tiếp theo trong 1 giờ đầu cho bệnh nhân:",
         options: [
@@ -743,11 +850,24 @@ let questionsDatabase = [
             "C. Tiếp tục truyền thêm dịch",
             "D. Dùng vận mạch Dobutamin"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Nếu huyết áp vẫn tụt sâu đe dọa tính mạng sau khi đã bù dịch, Noradrenalin là thuốc vận mạch lựa chọn đầu tay để nâng huyết áp trung bình lên trên 65 mmHg."
     },
     {
-        id: 36,
+        id: 45,
+        source: "LS HSCC CK1 2026 Đề 04 - Case 11.3",
+        question: "Sau khi truyền dịch, dùng vận mạch, chúng ta làm gì tiếp theo:",
+        options: [
+            "A. Chụp CT khung chậu để tìm vị trí nhiễm khuẩn",
+            "B. Chuyển trung tâm hồi sức cấp cứu",
+            "C. Cấy máu trước khi dùng kháng sinh và xét nghiệm lại lactat (để TD)",
+            "D. Dẫn lưu thận bể thận lấy dịch mủ"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Việc lấy máu cấy trước khi dùng kháng sinh phổ rộng và theo dõi độ thanh thải lactat là nguyên tắc bắt buộc trong gói hồi sức sốc nhiễm khuẩn."
+    },
+    {
+        id: 46,
         source: "LS HSCC CK1 2026 Đề 04 - Câu 12",
         question: "Ngộ độc Gardenal truyền gì?",
         options: [
@@ -756,11 +876,11 @@ let questionsDatabase = [
             "C. Atropine",
             "D. Flumazenil"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Gardenal (Phenobarbital) là một acid yếu. Truyền Natri Bicarbonate giúp kiềm hóa nước tiểu, làm ion hóa phân tử thuốc, ngăn chặn tái hấp thu ở ống thận và tăng tốc độ đào thải chất độc ra ngoài."
     },
     {
-        id: 37,
+        id: 47,
         source: "LS HSCC CK1 2026 Đề 05 - Case 11.1",
         question: "Bệnh nhân nữ, 45 tuổi, nhập viện do đau ngực, sau đó ngừng tim trong lúc chờ siêu âm tim. ECG monitor cho thấy nhịp không xác định, không bắt được mạch. Nhịp tim trên monitor là vô tâm thu. Can thiệp ưu tiên lúc này là gì?",
         options: [
@@ -769,11 +889,11 @@ let questionsDatabase = [
             "C. Atropin 0.5 mg",
             "D. Amiodarone 300 mg"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Theo phác đồ AHA, vô tâm thu là nhịp không thể sốc điện, can thiệp bắt buộc là ép tim ngoài lồng ngực liên tục kết hợp tiêm Adrenaline 1 mg mỗi 3-5 phút tĩnh mạch."
     },
     {
-        id: 38,
+        id: 48,
         source: "LS HSCC CK1 2026 Đề 05 - Case 11.2",
         question: "Trong vô tâm thu, thời gian tối đa cho mỗi lần ngừng ép tim để kiểm tra nhịp là:",
         options: [
@@ -782,11 +902,11 @@ let questionsDatabase = [
             "C. 30 giây",
             "D. Không cần kiểm tra nhịp"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Hướng dẫn AHA về hồi sức tim phổi chất lượng cao quy định thời gian gián đoạn ép tim để kiểm tra nhịp hoặc mạch phải được giảm thiểu tối đa, tuyệt đối không quá 10 giây và lý tưởng nhất là dưới 5 giây để duy trì áp lực tưới máu vành liên tục."
     },
     {
-        id: 39,
+        id: 49,
         source: "LS HSCC CK1 2026 Đề 05 - Case 11.3",
         question: "Nguyên nhân nào sau đây cần được loại trừ khẩn cấp trong vô tâm thu?",
         options: [
@@ -795,11 +915,11 @@ let questionsDatabase = [
             "C. Hạ kali máu",
             "D. Tăng natri máu"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Theo nguyên tắc 5H-5T, hạ Kali máu là một trong những nguyên nhân chuyển hóa nghiêm trọng có thể đảo ngược gây vô tâm thu, cần được tầm soát và điều chỉnh tức thì."
     },
     {
-        id: 40,
+        id: 50,
         source: "LS HSCC CK1 2026 Đề 05 - Case 13.1",
         question: "Một bệnh nhân nam 65 tuổi, có tiền sử tăng huyết áp và bệnh mạch vành, đang được điều trị bằng Metoprolol. Bệnh nhân bị ong đốt và nhanh chóng xuất hiện thở khò khè, phù môi và tụt huyết áp (HA 70/40 mmHg). Bệnh nhân được tiêm bắp 1 liều Adrenalin tiêu chuẩn 0.5 mg. Mười lăm phút sau, tình trạng khò khè có cải thiện nhẹ, nhưng HA tăng vọt lên 180/100 mmHg và nhịp tim giảm xuống 45 lần/phút.\n\nPhân tích nào sau đây giải thích đúng nhất cho đáp ứng huyết động này?",
         options: [
@@ -808,63 +928,37 @@ let questionsDatabase = [
             "C. Tác dụng alpha-adrenergic của Adrenalin không bị đối kháng, gây co mạch mạnh, trong khi tác dụng beta-adrenergic bị thuốc chẹn beta ức chế",
             "D. Bệnh nhân bị nhồi máu cơ tim cấp"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Ở bệnh nhân đang dùng thuốc chẹn beta, tác dụng kích thích beta của adrenalin bị phong bế, để lại tác dụng kích thích alpha không bị đối kháng gây co mạch mạnh làm tăng huyết áp, đồng thời gây phản xạ nhịp chậm."
     },
     {
-        id: 41,
+        id: 51,
         source: "LS HSCC CK1 2026 Đề 11 - Case 1.1",
-        question: "Bệnh nhân có tiền sử nghiện heroin, vào viện vì lơ mơ, đồng tử co nhỏ bằng đầu đinh ghim. Chẩn đoán là gì?",
+        question: "Bệnh nhân điều trị nhiễm khuẩn bằng kháng sinh liều đầu tiên amoxicillin và clavulanic, sau 1 thời gian ngắn xuất hiện huyết áp tụt, sốt 38.5 độ C, procalcitonin tăng.\nChẩn đoán là gì?",
         options: [
-            "A. Ngộ độc thuốc ngủ",
-            "B. Ngộ độc chất nhóm Opioid (Heroin)",
-            "C. Xuất huyết brain/não",
-            "D. Ngộ độc phospho hữu cơ"
+            "A. Sốc nhiễm khuẩn vì có sốt, procalcitonin tăng",
+            "B. Cả sốc nhiễm khuẩn và sốc phản vệ",
+            "C. Sốc phản vệ",
+            "D. Phản ứng sau dùng kháng sinh"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh cảnh lơ mơ, nhịp thở chậm và đặc biệt là đồng tử co nhỏ như đầu đinh ghim là tam chứng kinh điển của ngộ độc cấp nhóm Opioid."
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân có sốt và PCT tăng chứng tỏ đang có tình trạng nhiễm khuẩn. Tuy nhiên, sự xuất hiện đột ngột của tụt huyết áp ngay sau khi dùng kháng sinh là dấu hiệu cảnh báo phản vệ. Do đó, trên lâm sàng phải nghĩ đến và xử trí đồng thời cả hai tình trạng."
     },
     {
-        id: 42,
+        id: 52,
         source: "LS HSCC CK1 2026 Đề 11 - Case 1.2",
-        question: "Điều trị bằng thuốc gì?",
+        question: "Xử trí tiếp theo là gì?",
         options: [
-            "A. Flumazenil",
-            "B. Naloxon",
-            "C. Atropin",
-            "D. N-acetylcystein"
+            "A. Truyền dịch",
+            "B. Tiêm Adrenalin",
+            "C. Dùng Noradrenalin",
+            "D. Đổi kháng sinh"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Naloxon là chất đối kháng cạnh tranh đặc hiệu tại thụ thể Opioid, giúp đảo ngược nhanh chóng tình trạng ức chế hô hấp và hôn mê do Heroin."
+        correct: 1,
+        explanation: "Đáp án B. Khi nghi ngờ có sốc phản vệ, hành động cứu mạng ưu tiên số 1 và không được trì hoãn là tiêm bắp Adrenalin ngay lập tức."
     },
     {
-        id: 43,
-        source: "LS HSCC CK1 2026 Đề 12 - Case 2.1",
-        question: "Bệnh nhân nữ tiền sử gù vẹo biến dạng cột sống, hình như có cả COPD, có các đợt khó thở ho đờm trước đây. Đợt này sốt, ho đờm tăng, khó thở tăng... đã dùng kháng sinh. Sau 3 ngày bệnh nhân xuất hiện ngừng tuần hoàn đã được cấp cứu thành công, có mạch trở lại, được chuyển lên Bệnh viện Bạch Mai. Khí máu: pH 6.9, PCO2 58, HCO3 12-13, PO2 giảm. Rối loạn toan kiềm của khí máu:",
-        options: [
-            "A. Toan chuyển hóa đơn thuần",
-            "B. Toan hỗn hợp",
-            "C. Toan hô hấp đơn thuần",
-            "D. Kiềm chuyển hóa"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh nhân có pH 6,9, HCO3- 12-13 là toan chuyển hóa. Tuy nhiên, trên nền bệnh nhân gù vẹo cột sống, COPD và vừa ngừng thở, chắc chắn có ứ đọng CO2 máu. Sự kết hợp này tạo ra toan hỗn hợp."
-    },
-    {
-        id: 44,
-        source: "LS HSCC CK1 2026 Đề 12 - Case 2.2",
-        question: "Xử trí cần làm ngay ở bệnh nhân:",
-        options: [
-            "A. Đặt nội khí quản thở máy",
-            "B. Truyền bicarbonat",
-            "C. Dùng kháng sinh",
-            "D. Truyền dịch"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Bệnh nhân toan máu cực kỳ nặng đe dọa truy tim mạch tái phát, kèm theo bệnh lý nền hô hấp phức tạp. Xử trí bắt buộc là phải đặt nội khí quản thở máy để giải quyết toan hô hấp và đảm bảo oxy hóa máu."
-    },
-    {
-        id: 45,
+        id: 53,
         source: "LS HSCC CK1 2026 Đề 14 - Case 1.1",
         question: "Bệnh nhân bệnh nền tim mạch, phản vệ, sau khi tiêm bắp adrenalin thì mạch 45, HA 180/100 mmHg. Nguyên nhân là gì?",
         options: [
@@ -873,11 +967,11 @@ let questionsDatabase = [
             "C. Sốc tim thứ phát",
             "D. Phản xạ phế vị"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Ở bệnh nhân đang dùng thuốc chẹn beta, tác dụng kích thích beta của adrenalin bị phong bế, để lại tác dụng kích thích alpha không bị đối kháng gây co mạch ngoại vi mạnh làm tăng huyết áp, đồng thời cơ thể phản xạ qua thụ thể áp lực gây nhịp chậm."
     },
     {
-        id: 46,
+        id: 54,
         source: "LS HSCC CK1 2026 Đề 14 - Case 1.2",
         question: "Xử trí tiếp theo như thế nào:",
         options: [
@@ -886,11 +980,11 @@ let questionsDatabase = [
             "C. Tiêm atropin",
             "D. Tiêm glucagon"
         ],
-        correct: 3, // D
+        correct: 3,
         explanation: "Đáp án D. Ở bệnh nhân dùng thuốc chẹn Beta bị sốc phản vệ kháng Adrenalin, Glucagon là thuốc giải độc đặc hiệu hoạt động bằng cách kích thích tăng tổng hợp cAMP trong tế bào cơ tim thông qua một thụ thể hoàn toàn độc lập với thụ thể Beta, giúp tăng nhịp và sức co bóp cơ tim."
     },
     {
-        id: 47,
+        id: 55,
         source: "LS HSCC CK1 2026 Đề 14 - Câu 2",
         question: "Cấp cứu ngừng tuần hoàn ở bệnh nhân thai > 20 tuần lưu ý gì:",
         options: [
@@ -899,11 +993,24 @@ let questionsDatabase = [
             "C. Ép tim mạnh hơn bình thường",
             "D. Không cần nghiêng"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Ở thai phụ có thai nhi lớn hơn 20 tuần, tử cung lớn sẽ chèn ép tĩnh mạch chủ dưới khi nằm ngửa, làm cản trở và giảm sút nghiêm trọng lượng máu tĩnh mạch hồi lưu về tim phải. Bắt buộc người cấp cứu phải đẩy tử cung sang trái bằng tay hoặc chêm gối nghiêng người sản phụ sang phía bên trái 15-30 độ."
     },
     {
-        id: 48,
+        id: 56,
+        source: "LS HSCC CK1 2026 Đề chưa rõ mã - Case 1",
+        question: "Câu tính lượng Natri hạ bao nhiêu mmol sau truyền 1 lít Glucose 5%. (Cho dữ kiện đường máu 12, natri máu cao 180, không có mạch, huyết áp, cho crea hay ure. Đáp án 6, 8, 4, 10).",
+        options: [
+            "A. 4 mmol/L",
+            "B. 6 mmol/L (hoặc 7 mmol/L)",
+            "C. 8 mmol/L",
+            "D. 10 mmol/L"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Áp dụng công thức Adrogué-Madias: Mức thay đổi Na = (Na dịch truyền - Na bệnh nhân) / (Tổng lượng nước cơ thể + 1). Giả sử bệnh nhân nặng 50kg, TBW = 25 lít. Dịch Glucose 5% có Na = 0. Thay số: (0 - 180) / (25 + 1) = -6.9 mmol/L. Đáp án gần nhất là giảm 6-7 mmol/L."
+    },
+    {
+        id: 57,
         source: "LS HSCC CK1 2026 Đề chưa rõ mã - Case 5.1",
         question: "Ca lâm sàng COPD: dựa vào dữ kiện paO2, pco2 và spO2 88, rối loạn cơ hội hô hấp nhẹ để chuẩn đoán mức độ của bệnh nhân. Mức độ của bệnh nhân là gì?",
         options: [
@@ -912,11 +1019,11 @@ let questionsDatabase = [
             "C. Nặng",
             "D. Nguy kịch"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Bệnh nhân có SpO2 tụt 88% phản ánh tình trạng suy hô hấp cấp, do đó phân loại đợt cấp thuộc mức độ Nặng."
     },
     {
-        id: 49,
+        id: 58,
         source: "LS HSCC CK1 2026 Đề chưa rõ mã - Case 5.2",
         question: "Xử trí thở gì?",
         options: [
@@ -925,11 +1032,11 @@ let questionsDatabase = [
             "C. Thở không xâm nhập (NIV/BiPAP)",
             "D. Thở máy xâm nhập"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Với SpO2 88% và có toan hô hấp dự kiến, bệnh nhân có chỉ định thở máy không xâm nhập để hỗ trợ công hô hấp và thải CO2."
     },
     {
-        id: 50,
+        id: 59,
         source: "LS HSCC CK1 2026 Đề chưa rõ mã - Case 5.3",
         question: "Với pCO2 như vậy thì pH thực tế bao nhiêu?",
         options: [
@@ -938,169 +1045,51 @@ let questionsDatabase = [
             "C. 7,3",
             "D. 7,4"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Cần áp dụng công thức tính pH dự kiến dựa trên sự thay đổi của PaCO2 để xác định mức độ toan hô hấp."
-    },
-    // --- PHẦN 3 (CÂU 51 - 75) ---
-    {
-        id: 51,
-        source: "LS HSCC CK1 2026 Đề 05 - Case 6.1",
-        question: "Bệnh nhân nam 85 tuổi, cao 160 cm, nặng 50 kg, tiền sử đái tháo đường typ 2. Vào cấp cứu vì lơ mơ, huyết áp 90/60 mmHg. Xét nghiệm Na 180 mmol/L, Creatin 112 µmol/L, Glucose 12 mmol/L.\n\nNguyên nhân gây rối loạn ý thức của bệnh nhân này?",
-        options: [
-            "A. Hôn mê toan ceton",
-            "B. Hôn mê tăng áp lực thẩm thấu",
-            "C. Tăng đường máu",
-            "D. Hạ đường máu"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh nhân có Na máu tăng cực kỳ cao (180 mmol/L), làm áp lực thẩm thấu máu tăng vọt. Tình trạng này rút nước từ tế bào não ra ngoại bào gây co rút tế bào brain/não và dẫn đến hôn mê tăng áp lực thẩm thấu."
-    },
-    {
-        id: 52,
-        source: "LS HSCC CK1 2026 Đề 05 - Case 6.2",
-        question: "Loại dịch cần truyền ngay cho bệnh nhân này là:",
-        options: [
-            "A. Natri clorua 0,9%",
-            "B. Glucose 5%",
-            "C. Gelofusin",
-            "D. Natri clorua 0,45%"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Mặc dù bệnh nhân đang tăng Natri máu nặng, nhưng huyết áp đang tụt thể hiện tình trạng sốc giảm thể tích. Nguyên tắc tối thượng là phải dùng dịch đẳng trương (NaCl 0.9%) để phục hồi thể tích trong lòng mạch và nâng huyết áp trước khi dùng dịch nhược trương."
-    },
-    {
-        id: 53,
-        source: "LS HSCC CK1 2026 Đề 05 - Case 6.3",
-        question: "Khi truyền 1 lít glucose 5% cho bệnh nhân này, ước tính nồng độ natri giảm xuống bao nhiêu mmol/L?",
-        options: [
-            "A. 4",
-            "B. 6",
-            "C. 8",
-            "D. 10"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Áp dụng công thức Adrogué-Madias: Mức thay đổi Na = (Na dịch truyền - Na bệnh nhân) / (Tổng lượng nước cơ thể + 1). Bệnh nhân nam 85 tuổi, TBW = 50kg x 0.5 = 25 lít. Dịch Glucose 5% có Na = 0. Thay số: (0 - 180) / (25 + 1) = -180 / 26 = -6.9 mmol/L. Đáp án gần nhất là giảm 6 mmol/L."
-    },
-    {
-        id: 54,
-        source: "LS HSCC CK1 2026 Đề 05 - Câu 9",
-        question: "Bệnh nhân nam 25 tuổi, bị đau đầu dữ dội, sau đó đi vào tình trạng hôn mê. Chọc dịch não tủy có máu đỏ. Chẩn đoán phù hợp nhất là:",
-        options: [
-            "A. Tụ máu dưới màng cứng",
-            "B. Xuất huyết dưới nhện",
-            "C. U não",
-            "D. Tắc mạch não"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Triệu chứng đau đầu dữ dội đột ngột tiến triển thành hôn mê và đặc biệt là xét nghiệm dịch brain/não tủy có máu đỏ đều không đông là tiêu chuẩn vàng trên lâm sàng để chẩn đoán xuất huyết dưới nhện."
-    },
-    {
-        id: 55,
-        source: "LS HSCC CK1 2026 Đề 05 - Câu 10",
-        question: "Bệnh nhân phù phổi cấp được điều trị ban đầu, huyết áp 160/90 mmHg, thuốc nào sau đây được chỉ định tiếp theo:",
-        options: [
-            "A. Thuốc tăng co bóp cơ tim",
-            "B. Truyền Natriclorua 9‰",
-            "C. Nitroglycerine truyền tĩnh mạch",
-            "D. Chẹn beta"
-        ],
-        correct: 2, // C
-        explanation: "Đáp án C. Bệnh nhân phù phổi cấp huyết động có huyết áp cao, chỉ định ưu tiên là dùng thuốc giãn mạch Nitroglycerine IV để làm giảm tiền gánh và hậu gánh, giúp giảm áp lực mao mạch phổi và rút dịch ra khỏi phế nang."
-    },
-    {
-        id: 56,
-        source: "LS HSCC CK1 2026 Đề 12 - Case 4.1",
-        question: "Bệnh nhân nam COPD vào viện chẩn đoán viêm phổi thùy mức độ vừa - nặng, cấy ra trực khuẩn mủ xanh sinh ESBL. Đã đặt ống thở máy, dùng kháng sinh. Sau 3 ngày bệnh nhân suy hô hấp, hội chứng Galliard một bên phổi đã được xử trí dẫn lưu màng phổi bên đó. Nhưng bệnh nhân vẫn còn sốt, phổi thông khí hai bên kém, tăng CO2. Giả sử bệnh nhân đã an thần đầy đủ, chỉnh mode thở máy như thế nào cho bệnh nhân:",
-        options: [
-            "A. Tăng PEEP lên 8",
-            "B. Tăng I:E (kéo dài thời gian thở ra) chấp nhận tăng CO2",
-            "C. Tăng thể tích lưu thông (Vt)",
-            "D. Tăng tần số thở"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh nhân COPD có nguy cơ bẫy khí rất cao, đặc biệt khi đang có biến chứng tràn khí màng phổi. Nguyên tắc thở máy là phải kéo dài thời gian thở ra để phổi xẹp hết khí, chấp nhận tình trạng tăng CO2 cho phép để bảo vệ phổi."
-    },
-    {
-        id: 57,
-        source: "LS HSCC CK1 2026 Đề 12 - Case 4.2",
-        question: "Lựa chọn kháng sinh cho vi khuẩn sinh ESBL:",
-        options: [
-            "A. Meropenem + Vancomycin",
-            "B. Tazocin + Clindamycin",
-            "C. Meropenem (hoặc phối hợp Amikacin)",
-            "D. Ceftriaxone"
-        ],
-        correct: 2, // C
-        explanation: "Đáp án C. Vì vi khuẩn sinh men beta-lactamase phổ rộng (ESBL) có khả năng kháng lại hầu hết các kháng sinh nhóm Penicillin và Cephalosporin, lựa chọn đầu tay và hiệu quả nhất là nhóm Carbapenem (Meropenem)."
-    },
-    {
-        id: 58,
-        source: "LS HSCC CK1 2026 Chưa rõ mã (by Ngà) - Câu 4",
-        question: "Bệnh nhân sau mổ sỏi niệu quản 3 năm, bệnh nhân sốt, huyết áp tụt, da khô, nổi vân tím. Lựa chọn kháng sinh gì cho bệnh nhân:",
-        options: [
-            "A. Kháng sinh phổ rộng kết hợp gram âm và dương",
-            "B. Kháng sinh phổ hẹp",
-            "C. Phối hợp nhiều kháng sinh đường tĩnh mạch",
-            "D. 1 kháng sinh phổ rộng đánh gram âm dương và vi khuẩn kị khí"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Bệnh nhân có biểu hiện sốc nhiễm khuẩn đường tiết niệu nặng. Lựa chọn kháng sinh kinh nghiệm ban đầu phải là kháng sinh phổ rộng, bao phủ được cả vi khuẩn Gram âm, Gram dương và kỵ khí."
-    },
-    {
-        id: 59,
-        source: "LS HSCC 2025 Ảnh - Case 1.1",
-        question: "Bệnh nhân nam 44 tuổi, 3 ngày nay sốt cao liên tục 39.5 - 40°C, ho khan, đau ngực, khó thở. Khám lúc vào: mệt, nhịp thở 36 l/p, tím môi, phổi có rạn nổ đáy P và ran ẩm rải rác, HA 70/50 mmHg, CVP 3 cmH2O. Khí máu: pH 7.25, PaCO2 19.3, PaO2 51, HCO3- 10.6.\n\nChẩn đoán sơ bộ của bạn là:",
-        options: [
-            "A. Sốc tim",
-            "B. Sốc nhiễm khuẩn",
-            "C. Sốc phản vệ",
-            "D. Sốc giảm thể tích"
-        ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh nhân có ổ nhiễm khuẩn rõ ràng ở phổi tiến triển thành tụt huyết áp (70/50 mmHg), nhịp nhanh, khí máu toan chuyển hóa nặng và giảm tưới máu ngoại vi, đây là tiêu chuẩn lâm sàng của sốc nhiễm khuẩn (Septic shock)."
     },
     {
         id: 60,
-        source: "LS HSCC 2025 Ảnh - Case 1.2",
-        question: "Những triệu chứng và hội chứng nào gợi ý đến sốc nhiễm khuẩn?",
+        source: "LS HSCC CK1 2026 Đề chưa rõ mã - Case 5.4",
+        question: "Lựa chọn thuốc phòng ngừa cho bệnh nhân là gì?",
         options: [
-            "A. HA tâm thu tụt + khó thở",
-            "B. Hội chứng nhiễm khuẩn + tụt HA",
-            "C. Gan to",
-            "D. Áp lực TMTT giảm + mạch nhanh"
+            "A. ICS liều tối đa",
+            "B. SABA",
+            "C. LABA và LAMA (có thể kèm Macrolid dự phòng)",
+            "D. Kháng sinh uống"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Đặc trưng cơ bản nhất để chẩn đoán sốc nhiễm khuẩn so với các loại sốc khác là sự hiện diện của một hội chứng nhiễm khuẩn (sốt cao, ổ nhiễm trùng) đi kèm với tình trạng tụt huyết áp kéo dài không đáp ứng với bù dịch."
+        correct: 2,
+        explanation: "Đáp án C. Theo hướng dẫn GOLD, bệnh nhân COPD có nhiều đợt cấp cần được điều trị duy trì bằng phác đồ phối hợp thuốc giãn phế quản tác dụng kéo dài LABA + LAMA."
     },
     {
         id: 61,
-        source: "LS HSCC 2025 Ảnh - Câu 2",
-        question: "Cần ưu tiên điều trị nguyên nhân nào có khả năng đảo ngược gây rung thất kháng trị trong hồi sức tim phổi?",
-        options: [
-            "A. Toan chuyển hóa",
-            "B. Hạ kali máu",
-            "C. Hẹp van động mạch chủ",
-            "D. Thiếu máu cơ tim (thiếu tái tưới máu vành)"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Theo hướng dẫn cấp cứu ngừng tim của AHA, rung thất kháng trị thường có nguyên nhân gốc rễ là tắc nghẽn mạch vành cấp tính gây thiếu máu cục bộ cơ tim liên tục, do đó can thiệp ECMO hoặc chụp mạch vành cấp cứu để tái tưới máu là yếu tố quyết định đảo ngược tình trạng này."
-    },
-    {
-        id: 62,
         source: "LS HSCC 2025 Ảnh - Case 4.1",
-        question: "Bệnh nhân nam 18 tuổi, Chấn thương sọ brain/não do tai nạn giao thông. Glasgow 11 điểm, HA 90/50 mmHg, mạch 130 l/p, sốt 38 độ, da khô, tiểu 2.2 lít/ngày, Na+ máu 157 mmol/L.\n\nNguyên nhân gây tăng Na+ máu nghĩ nhiều đến:",
+        question: "Bệnh nhân nam 18 tuổi, Chấn thương sọ脑 do tai nạn giao thông. Glasgow 11 điểm, HA 90/50 mmHg, mạch 130 l/p, sốt 38 độ, da khô, tiểu 2.2 lít/ngày, Na+ máu 157 mmol/L.\n\nNguyên nhân gây tăng Na+ máu nghĩ nhiều đến:",
         options: [
             "A. Truyền quá nhiều Manitol",
             "B. Đái tháo nhạt",
             "C. Truyền nhiều dịch natri ưu trương",
             "D. Mất nước do thở nhanh"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Bệnh nhân sau chấn thương sọ brain/não xuất hiện đa niệu và tăng Natri máu ưu trương (157 mmol/L), đây là hội chứng đái tháo nhạt trung ương cấp tính do thiếu hụt ADH làm thận mất khả năng cô đặc nước tiểu."
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân sau chấn thương sọ脑 xuất hiện đa niệu và tăng Natri máu ưu trương (157 mmol/L), đây là hội chứng đái tháo nhạt trung ương cấp tính do thiếu hụt ADH làm thận mất khả năng cô đặc nước tiểu."
+    },
+    {
+        id: 62,
+        source: "LS HSCC 2025 Ảnh - Case 4.2",
+        question: "Các xét nghiệm sau đây cần chỉ định để chẩn đoán nguyên nhân gây tăng Natri, TRỪ:",
+        options: [
+            "A. Áp lực thẩm thấu máu, niệu",
+            "B. Điện giải máu 4h/lần",
+            "C. Tổng phân tích nước tiểu",
+            "D. Điện giải niệu"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Việc làm điện giải máu lặp lại mỗi 4 giờ chỉ là phương pháp theo dõi quá trình điều trị chứ không mang ý nghĩa chẩn đoán nguyên nhân ban đầu."
     },
     {
         id: 63,
-        source: "LS HSCC 2025 Ảnh - Case 4.2",
+        source: "LS HSCC 2025 Ảnh - Case 4.3",
         question: "Lựa chọn dịch để truyền ngay cho bệnh nhân này là:",
         options: [
             "A. Glucose 5%",
@@ -1108,169 +1097,38 @@ let questionsDatabase = [
             "C. Natriclorid 0.45%",
             "D. Natriclorid 3%"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Mặc dù bệnh nhân bị mất nước tự do do đái tháo nhạt, nhưng ưu tiên số một trong hồi sức là bệnh nhân đang có dấu hiệu sốc giảm thể tích (HA 90/50 mmHg, mạch 130), do đó dịch tinh thể đẳng trương (NaCl 0.9%) phải được truyền ngay lập tức để nâng huyết áp."
     },
     {
         id: 64,
-        source: "LS HSCC 2025 Ảnh - Case 7.1",
-        question: "Chẩn đoán ngộ độc cấp quan trọng nhất là dựa vào:",
+        source: "LS HSCC 2025 Ảnh - Case 5.1",
+        question: "Bệnh nhân nữ 31 tuổi sau tiêm vaccin 30 phút xuất hiện đau mỏi toàn thân, khó thở, M 110 ck/p, HA 80/50 mmHg.\nChẩn đoán lâm sàng phù hợp nhất với bệnh nhân này là:",
         options: [
-            "A. Khám lâm sàng",
-            "B. Xét nghiệm độc chất",
-            "C. Hỏi bệnh chi tiết",
-            "D. Dựa trên mẫu vật mang đến"
+            "A. Phản vệ độ 2",
+            "B. Phản vệ độ 3",
+            "C. Phản vệ độ 4",
+            "D. Phản vệ độ 1"
         ],
-        correct: 2, // C
-        explanation: "Đáp án C. Theo nguyên tắc chẩn đoán ngộ độc cấp tính, việc khai thác bệnh sử (hỏi bệnh chi tiết về hoàn cảnh, loại vỏ thuốc, thời gian tiếp xúc) là yếu tố chìa khóa cung cấp 80% giá trị định hướng nguyên nhân."
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân xuất hiện triệu chứng cấp tính sau khi tiếp xúc dị nguyên, có biểu hiện tụt huyết áp (80/50 mmHg) và khó thở, xếp bệnh nhân vào phản vệ mức độ nặng (Độ III)."
     },
     {
         id: 65,
-        source: "LS HSCC 2025 Ảnh - Case 7.2",
-        question: "Biện pháp cần làm đầu tiên lúc vào viện với bệnh nhân ngộ độc cấp qua đường tiêu hóa là:",
+        source: "LS HSCC 2025 Ảnh - Case 5.2",
+        question: "Xử trí phù hợp nhất với bệnh nhân này là:",
         options: [
-            "A. Rửa dạ dày",
-            "B. Tẩy rửa da, tóc",
-            "C. Dùng than hoạt",
-            "D. Cấp cứu ổn định tình trạng hô hấp, tuần hoàn sau đó mới thực hiện các biện pháp khác"
+            "A. Tiêm solumedrol và kháng histamin",
+            "B. Bù nhanh 30ml/kg dịch NaCl 0,9%",
+            "C. Tiêm bắp adrenalin",
+            "D. Chuyển ngay hồi sức tích cực"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Nguyên tắc tối thượng trong hồi sức cấp cứu mọi bệnh nhân ngộ độc là phải ưu tiên ổn định chức năng sống còn (A-B-C: Đường thở, Hô hấp, Tuần hoàn) trước khi thực hiện bất kỳ biện pháp tẩy độc nào."
+        correct: 2,
+        explanation: "Đáp án C. Adrenaline tiêm bắp là thuốc vận mạch cấp cứu sống còn, bắt buộc phải là can thiệp đầu tay và duy nhất ngay lập tức khi phát hiện phản vệ từ độ II trở lên."
     },
     {
         id: 66,
-        source: "LS HSCC 2025 Ảnh - Case 8.1",
-        question: "Bệnh nhân nữ 70 tuổi, tiền sử hẹp van 2 lá, vào viện vì khó thở cấp. Khám: Tỉnh, tim nhịp nhanh, phổi ran ẩm dâng 1/2 phế trường 2 bên, HA 100/60 mmHg, SpO2 89%.\n\nChẩn đoán nào sau đây phù hợp nhất?",
-        options: [
-            "A. Hen phế quản",
-            "B. Tràn dịch màng phổi",
-            "C. Viêm phổi cộng đồng",
-            "D. Phù phổi cấp"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Bệnh nhân có tiền sử hẹp van 2 lá, xuất hiện khó thở cấp, tĩnh mạch cổ nổi, SpO2 giảm và đặc biệt là ran ẩm dâng cao 1/2 phế trường hai bên là bệnh cảnh lâm sàng kinh điển của phù phổi cấp huyết động do suy tim trái cấp."
-    },
-    {
-        id: 67,
-        source: "LS HSCC 2025 Ảnh - Case 8.2",
-        question: "Các xét nghiệm sau cần làm ngay cho BN trên, TRỪ:",
-        options: [
-            "A. X quang tại giường",
-            "B. Khí máu động mạch",
-            "C. Điện tim",
-            "D. CT scanner ngực"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Trong cấp cứu suy hô hấp do phù phổi cấp, CT scanner ngực mất nhiều thời gian, rủi ro cao khi vận chuyển và không mang lại giá trị chẩn đoán cấp bách so với các xét nghiệm tại giường."
-    },
-    {
-        id: 68,
-        source: "LS HSCC 2025 Ảnh - Câu 12",
-        question: "Lựa chọn điều trị nào sau đây phù hợp nhất cho hạ natri máu nặng có triệu chứng thần kinh:",
-        options: [
-            "A. Truyền Natriclorua 0,9%",
-            "B. Uống Natriclorua gói 10g",
-            "C. Truyền Natriclorua 0,45%",
-            "D. Truyền Natri ưu trương 3%"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Trong bối cảnh bệnh nhân bị hạ Natri máu có triệu chứng thần kinh hoặc mức độ nặng, truyền Natri ưu trương 3% là phương pháp duy nhất đủ hiệu lực để kéo nước ra khỏi tế bào brain/não và nâng Natri máu một cách an toàn."
-    },
-    {
-        id: 69,
-        source: "LS HSCC 2025 Đề 8 - Case 10",
-        question: "Vào viện vì nôn, đại tiện nhiều lần. Mạch 130, lactat 9, BC 7, procalcitonin 0.4. Hỏi shock gì?",
-        options: [
-            "A. Shock tim",
-            "B. Shock NK",
-            "C. Shock PV",
-            "D. Shock giảm thể tích"
-        ],
-        correct: 3, // D
-        explanation: "Đáp án D. Tiền sử nôn và đại tiện nhiều lần dẫn tới mất lượng lớn dịch cơ thể gây nhịp tim nhanh bù trừ (130 l/p) và lactat tăng cao do mô thiếu oxy là bệnh cảnh điển hình của sốc giảm thể tích. Bạch cầu và Procalcitonin bình thường giúp loại trừ sốc nhiễm khuẩn."
-    },
-    {
-        id: 70,
-        source: "LS HSCC 2025 Đề 8 - Case 11",
-        question: "Không có tiền sử. Phản vệ với tôm, hạ huyết áp, khó thở, nổi máy đay. Mức độ phản vệ thuộc độ mấy?",
-        options: [
-            "A. Độ 1",
-            "B. Độ 2",
-            "C. Độ 3",
-            "D. Độ 4"
-        ],
-        correct: 2, // C
-        explanation: "Đáp án C. Bệnh nhân có biểu hiện hạ huyết áp (rối loạn huyết động) là tiêu chuẩn đặc trưng để phân loại thành phản vệ mức độ nặng - Độ 3 theo Thông tư 51/2017/TT-BYT."
-    },
-    {
-        id: 71,
-        source: "LS HSCC 2025 Đề 8 - Case 5.1",
-        question: "BN có tiền sử hút thuốc lá nhiều năm, đợt này vào viện vì khó thở. Khí máu: pH 7.35, PaCO2 50, HCO3 28, pO2 50. Tình trạng rối loạn toan kiềm là gì?",
-        options: [
-            "A. Toan hô hấp mạn có bù",
-            "B. SHH giảm oxy đơn thuần",
-            "C. Toan hô hấp cấp",
-            "D. Kiềm chuyển hóa"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Kết quả khí máu có PaCO2 tăng (50 mmHg) nhưng pH vẫn được duy trì ở ngưỡng bình thường thấp (7.35) do HCO3- đã tăng bù trừ (28 mmol/L), đây là biểu hiện của toan hô hấp mạn tính trên nền COPD."
-    },
-    {
-        id: 72,
-        source: "LS HSCC 2025 Đề 8 - Case 5.2",
-        question: "Bệnh nhân thở nhanh 26 lần/phút, co kéo cơ hô hấp phụ, SpO2 85%, xử trí gì ban đầu để duy trì SpO2 88-92% mà không gây tăng CO2?",
-        options: [
-            "A. Thở mask không thở lại FiO2 100%",
-            "B. Thở canuyn gọng 6l/p",
-            "C. Thở venturi FiO2 28%",
-            "D. Thở không xâm lần NIV"
-        ],
-        correct: 2, // C
-        explanation: "Đáp án C. Ở bệnh nhân COPD đợt cấp, liệu pháp oxy ban đầu phải cung cấp nồng độ oxy thấp kiểm soát được qua mặt nạ Venturi (FiO2 28%) để tránh làm mất động lực hô hấp do thiếu oxy và gây ứ đọng CO2 trầm trọng hơn."
-    },
-    {
-        id: 73,
-        source: "LS HSCC 2025 Đề 8 - Case 6.1",
-        question: "Ngộ độc paracetamol do uống 30 viên. Cơ chế gây ngộ độc ở gan của paracetamol là:",
-        options: [
-            "A. Cạn kiệt glutathione và tăng sinh NAPQI",
-            "B. Hoại tử ống thận cấp",
-            "C. Ức chế tổng hợp Prostaglandin",
-            "D. Gây rối loạn đông máu trực tiếp"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Khi quá liều Paracetamol, hệ thống chuyển hóa ở gan bị bão hòa dẫn đến tạo ra lượng lớn chất trung gian độc hại NAPQI, chất này làm cạn kiệt Glutathione tự nhiên của gan và phá hủy tế bào gan gây hoại tử."
-    },
-    {
-        id: 74,
-        source: "LS HSCC 2025 Đề 8 - Case 6.2",
-        question: "Thuốc điều trị giải độc đặc hiệu paracetamol là:",
-        options: [
-            "A. Rửa dạ dày",
-            "B. Than hoạt đa liều",
-            "C. Truyền NAC (N-acetylcysteine)",
-            "D. Lọc máu"
-        ],
-        correct: 2, // C
-        explanation: "Đáp án C. N-acetylcysteine (NAC) đường truyền tĩnh mạch là thuốc giải độc đặc hiệu, cung cấp tiền chất để gan tổng hợp lại Glutathione nhằm trung hòa NAPQI bảo vệ tế bào gan."
-    },
-    {
-        id: 75,
-        source: "LS HSCC 2025 Đề 9 - Case 7.3",
-        question: "Theo ACOG, xử trí gì tiếp theo nếu sau 4 phút cấp cứu ngừng tuần hoàn ở thai phụ (>20 tuần) không thành công?",
-        options: [
-            "A. Mổ lấy thai sau đó 1 phút (phút thứ 5)",
-            "B. Tiếp tục ép tim thêm 15 phút",
-            "C. Tăng gấp đôi liều Adrenaline",
-            "D. Sốc điện năng lượng tối đa"
-        ],
-        correct: 0, // A
-        explanation: "Đáp án A. Theo khuyến cáo của Trường Cao đẳng Sản Phụ khoa Hoa Kỳ (ACOG), nếu thai phụ ngừng tim không có mạch trở lại sau 4 phút hồi sức tích cực, cần quyết định mổ lấy thai cấp cứu tại chỗ và đưa thai nhi ra ngoài ở phút thứ 5 để cứu thai nhi và giải áp ổ bụng giúp người mẹ."
-    },
-    // --- PHẦN 4 (CÂU 76 - 100) ---
-    {
-        id: 76,
-        source: "LS HSCC 2025 Ảnh - Case 12",
+        source: "LS HSCC 2025 Đề 8 - Case 12",
         question: "Bệnh nhân vào hồi sức vào ngày thứ 3, tiểu ít, hạ huyết áp, sốt, có toan chuyển hóa, chênh ST từ V1 đến V5. Shock gì?",
         options: [
             "A. Shock tim",
@@ -1278,11 +1136,11 @@ let questionsDatabase = [
             "C. Shock giảm thể tích",
             "D. Shock phản vệ"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Điền tâm đồ có ST chênh lên từ V1 đến V5 là dấu hiệu điển hình của nhồi máu cơ tim cấp thành trước rộng. Tình trạng tụt huyết áp và tiểu ít ở bệnh nhân này phản ánh sốc tim do suy tuần hoàn nghiêm trọng sau tổn thương hoại tử cơ tim diện rộng."
+        correct: 0,
+        explanation: "Đáp án A. Điện tâm đồ có ST chênh lên từ V1 đến V5 là dấu hiệu điển hình của nhồi máu cơ tim cấp thành trước rộng. Tình trạng tụt huyết áp và tiểu ít ở bệnh nhân này phản ánh sốc tim do suy tuần hoàn nghiêm trọng sau tổn thương hoại tử cơ tim diện rộng."
     },
     {
-        id: 77,
+        id: 67,
         source: "LS HSCC 2025 Đề 8 - Case 2",
         question: "Theo cập nhật AHA, các nguyên nhân ngừng tuần hoàn có thể hồi phục được (Tổ hợp 'H's and T's') bao gồm tất cả ngoại trừ TRỪ:",
         options: [
@@ -1291,307 +1149,698 @@ let questionsDatabase = [
             "C. Tension pneumothorax, Tamponade, Toxins",
             "D. Hypoglycemia, Hypercapnia"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Tổ hợp '5H - 5T' kinh điển của AHA đại diện cho các nguyên nhân đảo ngược được trong ngừng tuần hoàn gồm: Hypovolemia (giảm thể tích), Hypoxia (thiếu oxy), Hydrogen ion (toan máu), Hypo-/Hyperkalemia (rối loạn kali), Hypothermia (hạ thân nhiệt) và Tension pneumothorax (tràn khí màng phổi áp lực), Tamponade (ép tim cấp), Toxins (ngộ độc), Thrombosis (huyết khối). Hypoglycemia (hạ đường huyết) và Hypercapnia (tăng CO2) không nằm trong danh pháp ghi nhớ 5H-5T chính thức này."
+        correct: 3,
+        explanation: "Đáp án D. Tổ hợp '5H - 5T' kinh điển của AHA đại diện cho các nguyên nhân đảo ngược được trong ngừng tuần hoàn gồm nhóm H và nhóm T. Hypoglycemia (Hạ đường huyết) và Hypercapnia (Tăng CO2) không nằm trong danh pháp ghi nhớ 5H-5T độc lập dành cho người lớn."
     },
     {
-        id: 78,
+        id: 68,
         source: "LS HSCC 2025 Đề 8 - Case 5.1",
-        question: "Cấp cứu NTH. Điện tâm đồ nhịp nhanh, giãn rộng, không bắt được mạch, tình trạng này được gộp chung vào nhóm:",
+        question: "Cấp cứu NTH. Điện tâm đồ nhịp nhanh, giãn rộng, không bắt được mạch. Trường hợp nào có thể xảy ra ở BN?",
         options: [
             "A. Vô tâm thu",
             "B. Rung thất",
             "C. Nhanh thất có mạch",
-            "D. PEA (Hoạt động điện vô mạch)"
+            "D. PEA"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Hình ảnh 'nhịp nhanh, giãn rộng' gợi ý nhịp tự thất hoặc nhanh thất, nhưng vì bệnh nhân 'không bắt được mạch', tình trạng này được gộp chung vào nhóm hoạt động điện vô mạch (PEA - Pulseless Electrical Activity)."
+        correct: 3,
+        explanation: "Đáp án D. Hình ảnh 'nhịp nhanh, giãn rộng' gợi ý nhịp tự thất hoặc nhanh thất, nhưng vì bệnh nhân 'không bắt được mạch', tình trạng này được gộp chung vào nhóm hoạt động điện vô mạch (PEA)."
     },
     {
-        id: 79,
+        id: 69,
+        source: "LS HSCC 2025 Đề 8 - Case 5.2",
+        question: "Sau 2 chu kỳ CPR + adrenaline, bệnh nhân vẫn chưa ROSC. Siêu âm tim thấy thất Phải giãn rộng, đè đẩy vách liên thất sang Trái, không có tràn dịch màng ngoài tim. Xử trí gì tiếp theo?",
+        options: [
+            "A. Ngừng cấp cứu. Truyền dịch nhanh, nghi thuyên tắc phổi",
+            "B. Đặt catheter Swan-Ganz",
+            "C. Sốc điện",
+            "D. Thở máy PEEP cao"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Hình ảnh siêu âm thất phải giãn rộng cấp tính đẩy vách liên thất sang trái là dấu hiệu kinh điển của thuyên tắc động mạch phổi diện rộng, can thiệp lúc này cần hướng tới giải quyết nguyên nhân tắc nghẽn cơ học."
+    },
+    {
+        id: 70,
+        source: "LS HSCC 2025 Đề 8 - Case 5.3",
+        question: "Chống chỉ định tương đối của hạ thân nhiệt sau ROSC:",
+        options: [
+            "A. Ngừng tim sau sốc điện",
+            "B. Ngừng tim sau nhiễm khuẩn nặng",
+            "C. Ngừng tim sau đuối nước",
+            "D. Ngừng tim do nhồi máu cơ tim"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Tình trạng nhiễm khuẩn huyết nặng hoặc sốc nhiễm khuẩn là một chống chỉ định tương đối của hạ thân nhiệt chỉ huy do nhiệt độ thấp làm suy yếu hệ miễn dịch và trầm trọng thêm rối loạn đông máu."
+    },
+    {
+        id: 71,
         source: "LS HSCC 2025 Đề 8 - Case 5.4",
-        question: "Khuyến cáo hiện hành về cấp cứu NTH cho người không chuyên:",
+        question: "Cấp cứu NTH cho người không chuyên, khuyến cáo hiện hành:",
         options: [
             "A. 30:2",
-            "B. Chỉ ép tim liên tục",
+            "B. Chỉ ép tim",
             "C. 15:2",
             "D. Chỉ thổi ngạt"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. AHA khuyến cáo đối với người cấp cứu ngoại viện không chuyên (Hands-Only CPR), phương pháp chỉ ép tim liên tục ở giữa ngực được ưu tiên để duy trì áp lực tưới máu và dễ thực hiện."
     },
     {
-        id: 80,
+        id: 72,
+        source: "LS HSCC 2025 Đề 8 - Case 8.1",
+        question: "Case sốc nhiễm khuẩn: Phương pháp đầu tiên ưu tiên là gì?",
+        options: [
+            "A. Truyền dịch tinh thể 30ml/kg",
+            "B. Đặt catheter để bù theo CVP",
+            "C. Tiêm Noradrenalin",
+            "D. Cho kháng sinh"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Theo SSC, hồi sức dịch sớm bằng cách truyền nhanh dịch tinh thể liều 30 ml/kg trong 3 giờ đầu tiên là can thiệp cốt lõi để khôi phục thể tích tuần hoàn."
+    },
+    {
+        id: 73,
+        source: "LS HSCC 2025 Đề 8 - Case 8.2",
+        question: "Bù đủ 1 lít dịch, không có mạch, tiêm gì đầu tay:",
+        options: [
+            "A. Norepinephrine",
+            "B. Lidocain",
+            "C. Dopamin",
+            "D. Hydrocorticoid"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Norepinephrine là thuốc vận mạch lựa chọn hàng đầu trong sốc nhiễm khuẩn khi huyết động chưa cải thiện sau khi bù đủ dịch."
+    },
+    {
+        id: 74,
+        source: "LS HSCC 2025 Đề 8 - Case 8.3",
+        question: "Gói cấp cứu trong 1 giờ đầu:",
+        options: [
+            "A. Cấy máu trước khi làm kháng sinh và đo lại lactat",
+            "B. Bù dịch",
+            "C. Chụp CT toàn thân",
+            "D. Lọc máu liên tục"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Trong gói cấp cứu 1 giờ của SSC, việc lấy máu cấy bắt buộc phải thực hiện trước khi dùng kháng sinh phổ rộng và theo dõi độ thanh thải lactat."
+    },
+    {
+        id: 75,
+        source: "LS HSCC 2025 Đề 8 - Case 10",
+        question: "Vào viện vì nôn, đại tiện nhiều lần. Mạch 130, lactat 9, BC 7, procalcitonin 0.4. Hỏi shock gì?",
+        options: [
+            "A. Shock tim",
+            "B. Shock NK",
+            "C. Shock PV",
+            "D. Shock giảm thể tích"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Tiền sử nôn và đại tiện nhiều lần dẫn tới mất lượng lớn dịch cơ thể gây nhịp tim nhanh bù trừ và lactat tăng cao do mô thiếu oxy là bệnh cảnh điển hình của sốc giảm thể tích."
+    },
+    {
+        id: 76,
+        source: "LS HSCC 2025 Đề 8 - Case 11.1",
+        question: "Không có tiền sử. Phản vệ với tôm, hạ huyết áp, khó thở, nổi máy đay. Làm gì đầu tiên:",
+        options: [
+            "A. Tiêm epinephrine",
+            "B. Thở oxy",
+            "C. Tiêm corticoid",
+            "D. Truyền dịch"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Theo Thông tư 51/2017/TT-BYT, Adrenaline (Epinephrine) tiêm bắp là thuốc cấp cứu đặc hiệu, sống còn và phải được chỉ định ngay lập tức khi chẩn đoán phản vệ từ độ II trở lên."
+    },
+    {
+        id: 77,
+        source: "LS HSCC 2025 Đề 8 - Case 11.2",
+        question: "Độ mấy?",
+        options: [
+            "A. Độ 3",
+            "B. Độ 2",
+            "C. Độ 1",
+            "D. Độ 4"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Bệnh nhân có biểu hiện hạ huyết áp (rối loạn huyết động) là tiêu chuẩn đặc trưng để phân loại thành phản vệ mức độ nặng - Độ 3."
+    },
+    {
+        id: 78,
         source: "LS HSCC 2025 Đề 8 - Case 11.3",
-        question: "Bệnh nhân phản vệ với tôm, tụt huyết áp, nổi mề đay, thuộc bệnh cảnh mấy?",
+        question: "Bệnh cảnh gì:",
         options: [
             "A. Bệnh cảnh 2",
             "B. Bệnh cảnh 1",
             "C. Bệnh cảnh 3",
-            "D. Bệnh cảnh 4"
+            "D. Không bệnh cảnh nào"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Theo tiêu chuẩn lâm sàng, Bệnh cảnh 2 của phản vệ được định nghĩa là có sự xuất hiện của ít nhất 2 trong 4 nhóm triệu chứng (ở đây bệnh nhân có biểu hiện ở da là nổi mẫn và tuần hoàn là hạ huyết áp) sau khi tiếp xúc với yếu tố nghi ngờ là dị nguyên."
+        correct: 0,
+        explanation: "Đáp án A. Bệnh cảnh 2 được định nghĩa là có sự xuất hiện các triệu chứng từ 2 cơ quan trở lên (da, hô hấp và tuần hoàn) xảy ra nhanh sau khi tiếp xúc với dị nguyên."
+    },
+    {
+        id: 79,
+        source: "LS HSCC 2025 Đề 8 - Case 9.1",
+        question: "BN THA, ĐTĐ typ 2 ĐT thường xuyên. không có dấu hiệu TK khu trú. Glu 45 mmol/L, Na 125, K bthg. Đột ngột mất ý thức.\nLoại trừ NN gì?",
+        options: [
+            "A. Đột quỵ脑 cấp",
+            "B. Hạ Na",
+            "C. Hôn mê do ĐTĐ",
+            "D. Phù脑"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Dấu hiệu lâm sàng 'không có dấu hiệu thần kinh khu trú' giúp loại trừ bước đầu chẩn đoán đột quỵ脑 cấp gây tổn thương khu trú."
+    },
+    {
+        id: 80,
+        source: "LS HSCC 2025 Đề 8 - Case 9.2",
+        question: "Bù Na kiểu gì?",
+        options: [
+            "A. Na đẳng trương + insulin",
+            "B. Na ưu trương",
+            "C. Glucose 5%",
+            "D. Nước cất"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Hạ natri máu trong bối cảnh đường huyết cao ngất ngưởng là hạ natri nhược trương giả tạo, điều trị chuẩn là bù dịch bằng dung dịch muối đẳng trương kết hợp truyền Insulin tĩnh mạch."
     },
     {
         id: 81,
-        source: "LS HSCC 2025 Đề 9 - Case 1.1",
-        question: "Bệnh nhân nam nhồi máu cơ tim trước rộng, đã được can thiệp trước đó 12 ngày. ECG rung thất. Xử trí gì đầu tiên?",
+        source: "LS HSCC 2025 Đề 8 - Case 13.1",
+        question: "BN Dùng lợi tiểu, sút 4kg, hạ Na. Nguyên nhân do đâu?",
         options: [
-            "A. Bắt mạch ngoại vi",
-            "B. Khử rung",
-            "C. Sốc điện khử rung sớm nhất có thể",
-            "D. Lidocain"
+            "A. Thừa nước toàn bộ",
+            "B. Mất nước toàn bộ",
+            "C. Mất ngoại - thừa trong",
+            "D. Mất trong - thừa ngoại"
         ],
-        correct: 2, // C
-        explanation: "Đáp án C. Theo phác đồ cấp cứu ngừng tuần hoàn của AHA, khi ghi nhận nhịp rung thất trên monitor, can thiệp ưu tiên số một và mang tính sống còn là phải tiến hành sốc điện khử rung càng sớm càng tốt để khôi phục nhịp xoang."
+        correct: 1,
+        explanation: "Đáp án B. Việc dùng thuốc lợi tiểu gây sụt 4kg cân nặng cấp tính đồng nghĩa với việc mất 4 lít dịch toàn cơ thể kèm theo natri qua nước tiểu, đây là tình trạng mất nước và điện giải toàn bộ."
     },
     {
         id: 82,
-        source: "LS HSCC 2025 Đề 9 - Case 1.2",
-        question: "Sau sốc điện vẫn không có mạch, làm gì tiếp theo?",
+        source: "LS HSCC 2025 Đề 8 - Case 13.2",
+        question: "Triệu chứng của thừa nước trong tế bào, TRỪ:",
         options: [
-            "A. Adrenaline",
-            "B. Lidocain",
-            "C. Amiodarone",
-            "D. Atropin"
+            "A. Buồn nôn, nôn",
+            "B. Khát",
+            "C. Đau đầu",
+            "D. Cơn co giật cấp"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Theo hướng dẫn AHA, trong trường hợp rung thất vô mạch chưa đáp ứng sau cú sốc điện đầu tiên, Adrenaline được chỉ định để duy trì áp lực tưới máu vành và não trong quá trình hồi sức tim phổi liên tục."
+        correct: 1,
+        explanation: "Đáp án B. Triệu chứng khát là phản xạ bảo vệ chỉ xuất hiện khi cơ thể bị 'mất nước trong tế bào' chứ không phải khi tế bào thừa nước."
     },
     {
         id: 83,
-        source: "LS HSCC 2025 Đề 9 - Case 2",
-        question: "Trong ngừng tuần hoàn, thời gian bắt mạch sau 2 phút / sau 5 chu kỳ là:",
+        source: "LS HSCC 2025 Đề 8 - Case 7.1",
+        question: "NMN – 8 điểm NISHH, HA 190, thời điểm khởi phát đột quỵ 2,5h, có chỉ định dùng tiêu sợi huyết.\nHA trước tiêu sợi huyết:",
         options: [
-            "A. 15s",
-            "B. 30s",
-            "C. < 10s",
-            "D. 20s"
+            "A. 185/110 mmHg",
+            "B. 180/105 mmHg",
+            "C. 140/90 mmHg",
+            "D. 160/100 mmHg"
         ],
-        correct: 2, // C
-        explanation: "Đáp án C. Nguyên tắc tối thượng trong CPR chất lượng cao là giảm thiểu tối đa thời gian gián đoạn ép tim ngoài lồng ngực, thời gian dừng ép tim để bắt mạch hoặc kiểm tra nhịp tuyệt đối không được quá 10 giây (và lý tưởng nhất là dưới 5 giây)."
+        correct: 0,
+        explanation: "Đáp án A. Theo hướng dẫn của AHA, điều kiện tiên quyết trước khi truyền tiêu sợi huyết trong nhồi máu脑 cấp là huyết áp phải được hạ và duy trì ổn định dưới 185/110 mmHg."
     },
     {
         id: 84,
-        source: "LS HSCC 2025 Đề 9 - Case 7.1",
-        question: "Dấu hiệu nhồi máu phổi ở thai phụ nghi tắc mạch ối:",
+        source: "LS HSCC 2025 Đề 8 - Case 7.2",
+        question: "Thuốc kiểm soát HA:",
         options: [
-            "A. Ho máu, khó thở",
-            "B. Đau ngực trái lan lên cằm",
-            "C. Sốt cao rét run",
-            "D. Phù hai chân"
+            "A. Nicardipin",
+            "B. Furosemid",
+            "C. Valsartan",
+            "D. Amlodipin"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Tắc mạch ối gây ra tình trạng thuyên tắc động mạch phổi cấp tính bởi các thành phần của nước ối, dẫn đến suy hô hấp đột ngột (khó thở dữ dội) và có thể kèm ho ra máu do nhồi máu nhu mô phổi."
+        correct: 0,
+        explanation: "Đáp án A. Trong cấp cứu đột quỵ, Nicardipin truyền tĩnh mạch là ưu tiên hàng đầu để hạ huyết áp nhanh và an toàn."
     },
     {
         id: 85,
-        source: "LS HSCC 2025 Đề 9 - Case 6.1",
-        question: "Bệnh nhân nhiễm trùng HA tụt, lactat tăng. Bước xử trí đầu tiên theo gói 1h:",
+        source: "LS HSCC 2025 Đề 8 - Case 7.3",
+        question: "Dùng đường uống khi nào:",
         options: [
-            "A. Đặt đường truyền TMTT, bù dịch theo CVP",
-            "B. Truyền TM dịch đẳng trương 30ml/kg trong 1-3h đầu",
-            "C. Dùng ngay Noradrenalin",
-            "D. Tiêm Corticoid"
+            "A. 24-72h",
+            "B. 24h",
+            "C. Ngay sau tiêu sợi huyết",
+            "D. Ngay sau kết thúc dùng đg truyền TM"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Theo Chiến dịch Sống còn Sốc nhiễm khuẩn (SSC), can thiệp huyết động mang tính ưu tiên sống còn là truyền nhanh dịch tinh thể (đẳng trương) với liều 30 ml/kg ngay trong 3 giờ đầu tiên để khôi phục thể tích tuần hoàn bị mất do giãn mạch."
+        correct: 1,
+        explanation: "Đáp án B. Khuyến cáo quốc tế cấm tuyệt đối việc sử dụng bất kỳ thuốc chống huyết khối hay thuốc đường uống nào trong vòng 24 giờ sau khi truyền tiêu sợi huyết để ngăn ngừa chảy máu ồ ạt."
     },
     {
         id: 86,
-        source: "LS HSCC 2025 Đề 9 - Case 6.2",
-        question: "Bước nào có trong gói 1h cấp cứu sốc nhiễm khuẩn:",
+        source: "LS HSCC 2025 Đề 8 - Case 14.1",
+        question: "BN xuất huyết脑: Làm gì để... Khối máu tụ, HA 160/90. THA ko DT",
         options: [
-            "A. Chuyển HSCC theo dõi xâm lấn",
-            "B. Cấy máu trước khi dùng KS, đo lại lactate",
-            "C. Chụp CT toàn thân",
-            "D. Lọc máu liên tục"
+            "A. Mannitol",
+            "B. Ksoat HA < 180 mmHg",
+            "C. Thuốc cầm máu",
+            "D. Phẫu thuật"
         ],
-        correct: 1, // B
-        explanation: "Đáp án B. Gói cấp cứu 1 giờ (1-hour bundle) của SSC quy định bắt buộc phải lấy máu cấy để phân lập vi khuẩn trước khi tiêm kháng sinh phổ rộng, đồng thời phải đo nồng độ lactate máu ban đầu để đánh giá tưới máu mô."
+        correct: 1,
+        explanation: "Đáp án B. Đối với xuất huyết脑 tự phát, kiểm soát huyết áp nội khoa tích cực (thường < 140-180 mmHg) là biện pháp cốt lõi ngăn khối máu tụ lan rộng."
     },
     {
         id: 87,
+        source: "LS HSCC 2025 Đề 8 - Case 14.2",
+        question: "Sau x giờ thì nặng lên, giãn脑 thất:",
+        options: [
+            "A. Mở sọ",
+            "B. Dẫn lưu脑 thất ra ngoài",
+            "C. Cầm máu",
+            "D. Dùng mannitol"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Biến chứng giãn脑 thất cấp do máu làm tắc nghẽn lưu thông dịch脑 tủy là cấp cứu ngoại khoa, chỉ định bắt buộc là chọc dẫn lưu脑 thất ra ngoài (EVD)."
+    },
+    {
+        id: 88,
+        source: "LS HSCC 2025 Đề 8 - Case 5.1 (COPD)",
+        question: "BN có tiền sử hút thuốc lá nhiều năm. Đợt này vào viện vì khó thở. Xét nghiệm khí máu: pH 7.35/ PaCO2 50/ HCO3 28/ pO2 50.\nTình trạng gì:",
+        options: [
+            "A. Toan hô hấp mạn có bù",
+            "B. SHH giảm oxy đơn thuần",
+            "C. Toan hô hấp cấp",
+            "D. Kiềm chuyển hóa"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Kết quả khí máu có PaCO2 tăng (50 mmHg) nhưng pH được giữ ở ranh giới bình thường thấp (7.35) do HCO3- đã tăng bù trừ (28 mmol/L), đây là biểu hiện của toan hô hấp mạn tính có bù."
+    },
+    {
+        id: 89,
+        source: "LS HSCC 2025 Đề 8 - Case 5.2 (COPD)",
+        question: "Bệnh nhân thở nhanh 26 lần/phút, co kéo cơ hô hấp phụ, SpO2 85%, xử trí gì ban đầu để duy trì SpO2 88-92%, và không gây tăng CO2:",
+        options: [
+            "A. Thở mask không thở lại FiO2 100%",
+            "B. Mặt nạ venturi, FiO2 28%",
+            "C. Cannula mũi 6l/p",
+            "D. NIV ngay lập tức"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Để tránh hiện tượng mất động lực hô hấp làm tăng CO2 máu ở bệnh nhân COPD, liệu pháp oxy ban đầu phải kiểm soát nồng độ thấp thông qua mặt nạ Venturi (FiO2 28%)."
+    },
+    {
+        id: 90,
         source: "LS HSCC 2025 Đề 9 - Case 8.1",
-        question: "Ăn nhộng tằm xong nổi mẩn, chưa có tiền sử dị ứng trước đó, HA 80/50 mmHg. Điều trị gì?",
+        question: "Ăn nhộng tằm xong nổi mẩn, chưa có TS dị ứng trước đó, HA 80/50.\nĐiều trị gì?",
         options: [
             "A. Adrenalin tiêm bắp",
             "B. Kháng Histamin",
             "C. Corticoid",
-            "D. Bù dịch NaCl 0.9%"
+            "D. Bù dịch"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Bệnh nhân có biểu hiện sốc phản vệ với bằng chứng tụt huyết áp rõ rệt (HA 80/50 mmHg), thuốc cấp cứu đặc hiệu, duy nhất và phải tiêm bắp ngay lập tức để duy trì tính mạng là Adrenalin."
+        correct: 0,
+        explanation: "Đáp án A. Bệnh nhân có biểu hiện sốc phản vệ với bằng chứng tụt huyết áp rõ rệt (HA 80/50 mmHg), thuốc cấp cứu đặc hiệu, duy nhất và phải tiêm bắp ngay lập tức là Adrenalin."
     },
     {
-        id: 88,
+        id: 91,
         source: "LS HSCC 2025 Đề 9 - Case 8.2",
-        question: "Biểu hiện trên thuộc phản vệ độ mấy?",
+        question: "Bệnh cảnh mấy?",
+        options: [
+            "A. Bệnh cảnh 2",
+            "B. Bệnh cảnh 1",
+            "C. Bệnh cảnh 3",
+            "D. Không có bệnh cảnh"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Bệnh cảnh 2 của phản vệ được định nghĩa lâm sàng là có sự xuất hiện của ít nhất 2 trong 4 nhóm triệu chứng sau khi tiếp xúc với yếu tố nghi ngờ là dị nguyên."
+    },
+    {
+        id: 92,
+        source: "LS HSCC 2025 Đề 9 - Case 8.3",
+        question: "Phản vệ độ mấy?",
         options: [
             "A. Độ III",
             "B. Độ I",
             "C. Độ II",
             "D. Độ IV"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Theo phân độ phản vệ chuẩn, việc bệnh nhân có biểu hiện rối loạn huyết động (tụt huyết áp 80/50 mmHg) là tiêu chuẩn vàng để phân loại vào phản vệ mức độ nặng - Độ III."
     },
     {
-        id: 89,
+        id: 93,
         source: "LS HSCC 2025 Đề 9 - Case 8.11",
-        question: "Bệnh nhân có Na+ 141 mmol/l; Cl- 97 mmol/l; HCO3- 16 mmol/l. Khoảng trống Anion (Anion Gap) là bao nhiêu?",
+        question: "Na+ 141 mmol/l; Cl- 97 mmol/l; HCO3- 16 mmol/l; pH giảm, pCO2 giảm.\nTính khoảng trống Anion?",
         options: [
             "A. 18",
             "B. 22",
             "C. 26",
             "D. 28"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Khoảng trống Anion (Anion Gap) theo công thức không có K+ là: AG = Na+ - (Cl- + HCO3-). Áp dụng số liệu thực tế ta có: 141 - (97 + 16) = 28 mmol/L."
+        correct: 3,
+        explanation: "Đáp án D. Khoảng trống Anion (Anion Gap) theo công thức không có K+ là: AG = Na+ - (Cl- + HCO3-), áp dụng số liệu thực tế ta có 141 - (97 + 16) = 28 mmol/L."
     },
     {
-        id: 90,
-        source: "LS HSCC 2025 Đề 9 - Case 9.3",
-        question: "Bệnh nhân đột quỵ nhồi máu brain/não dùng thuốc hạ áp tĩnh mạch (IV), khi nào thì dừng được thuốc hạ áp IV?",
+        id: 94,
+        source: "LS HSCC 2025 Đề 9 - Case 8.12",
+        question: "Chẩn đoán RL toan kiềm gì?",
         options: [
-            "A. 24-72h",
-            "B. 72h",
-            "C. Sau TSH",
-            "D. Sau khi duy trì ổn định và gối chuyển sang thuốc hạ áp đường uống"
+            "A. Toan chuyển hóa",
+            "B. Toan hô hấp",
+            "C. Kiềm chuyển hóa",
+            "D. Kiềm hô hấp"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Việc ngừng thuốc hạ áp phụ thuộc vào diễn biến huyết động của bệnh nhân, thường sau khi đã duy trì ổn định bằng thuốc hạ áp tĩnh mạch (IV) qua giai đoạn cấp, bệnh nhân sẽ được chuyển dần sang thuốc uống để tránh tăng huyết áp dội ngược."
+        correct: 0,
+        explanation: "Đáp án A. Kết quả khí máu cho thấy pH toan kết hợp với nồng độ HCO3- giảm nặng (16 mmol/L) là tiêu chuẩn chẩn đoán xác định tình trạng toan chuyển hóa."
     },
     {
-        id: 91,
+        id: 95,
         source: "LS HSCC 2025 Đề 9 - Case 16.1",
-        question: "Ngộ độc phenobarbital, hôn mê GCS 6đ, thở chậm, có cơn ngừng thở. Hỗ trợ hô hấp:",
+        question: "Ngộ độc phenobarbital, hôn mê GCS 6đ, thở chậm, có cơn ngừng thở.\nHỗ trợ hô hấp:",
         options: [
-            "A. Đặt nội khí quản, thở máy",
+            "A. Thở máy (Đặt nội khí quản)",
             "B. Thở O2 kính",
-            "C. Thở MASK Venturi",
+            "C. Thở Venturi",
             "D. Thở NIV"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Bệnh nhân ngộ độc Barbituric rơi vào hôn mê sâu (GCS 6 điểm) kèm ức chế trung tâm hô hấp rõ rệt (thở chậm, có cơn ngừng thở) thì không còn khả năng tự bảo vệ đường thở, chỉ định bắt buộc là đặt ống nội khí quản và thở máy xâm nhập."
+        correct: 0,
+        explanation: "Đáp án A. Bệnh nhân ngộ độc Barbituric rơi vào hôn mê sâu (GCS 6 điểm) kèm ức chế trung tâm hô hấp rõ rệt thì không còn khả năng tự bảo vệ đường thở, chỉ định bắt buộc là đặt ống nội khí quản và thở máy xâm nhập."
     },
     {
-        id: 92,
+        id: 96,
         source: "LS HSCC 2025 Đề 9 - Case 16.2",
-        question: "Xử trí tăng thải trừ chất độc nào thích hợp ở bệnh nhân ngộ độc phenobarbital hôn mê sâu?",
+        question: "Xử trí tăng thải trừ chất độc:",
         options: [
             "A. Rửa dạ dày",
             "B. Than hoạt đơn liều",
             "C. Than hoạt đa liều",
             "D. Gây nôn"
         ],
-        correct: 2, // C
-        explanation: "Đáp án C. Phenobarbital có đặc tính tham gia chu kỳ ruột - gan, do đó việc sử dụng than hoạt tính đa liều (bơm nhiều lần qua ống thông) là biện pháp thanh lọc tiêu hóa đặc hiệu giúp ngắt chu kỳ này để tăng cường đào thải chất độc."
+        correct: 2,
+        explanation: "Đáp án C. Phenobarbital có đặc tính tham gia chu kỳ ruột - gan, do đó việc sử dụng than hoạt tính đa liều là biện pháp thanh lọc tiêu hóa đặc hiệu giúp ngắt chu kỳ này để tăng cường đào thải chất độc."
     },
     {
-        id: 93,
+        id: 97,
         source: "Chuyên đề Sốc Nhiễm Khuẩn - Case 2.1",
-        question: "Bệnh nhân sốc nhiễm khuẩn đường vào tiết niệu, đã bù 4 lít dịch NaCl 0.9%, cung lượng tim ổn, dùng Noradrenalin liều 0.5 mcg/kg/phút để duy trì HATB > 65 mmHg. Dùng gì tiếp theo?",
+        question: "Bệnh nhân sốc nhiễm khuẩn, đường vào tiết niệu, đã bù 4 lít dịch NaCl 0.9%, cung lượng tim ổn, dùng Noradrenalin liều 0.5mg/kg/phút để duy trì HATB > 65mmHg.\nDùng gì tiếp theo:",
         options: [
             "A. Tiếp tục dùng noradrenalin, tăng liều",
             "B. Chuyển dùng adrenalin",
             "C. Thêm vasopressin",
             "D. Thêm dobutamin"
         ],
-        correct: 2, // C
+        correct: 2,
         explanation: "Đáp án C. Theo phác đồ Surviving Sepsis Campaign, khi đã dùng Noradrenalin liều cao mà huyết áp vẫn chưa đạt mục tiêu hoặc cần giảm liều Noradrenalin, bước tiếp theo là phối hợp thêm Vasopressin để tăng tác dụng co mạch."
     },
     {
-        id: 94,
+        id: 98,
         source: "Chuyên đề Sốc Nhiễm Khuẩn - Case 2.2",
-        question: "Bệnh nhân sốc nhiễm khuẩn nặng này chỉ định lọc máu nhằm mục đích gì?",
+        question: "Bệnh nhân này lọc máu để làm gì:",
         options: [
             "A. Rút bớt dịch thừa",
             "B. Thay thế chức năng thận",
-            "C. Loại bỏ bớt các cytokine",
+            "C. Loại bỏ bớt các cytokin",
             "D. Điều chỉnh toan kiềm"
         ],
-        correct: 2, // C
-        explanation: "Đáp án C. Ở bệnh nhân sốc nhiễm khuẩn nặng kháng trị, việc sử dụng các màng lọc máu hấp phụ hoặc lọc máu liên tục (như màng AN69) có đặc tính gắn và hấp phụ tốt các chất trung gian gây viêm (Cytokine) nhằm giảm bão bão viêm toàn thân."
+        correct: 2,
+        explanation: "Đáp án C. Ở bệnh nhân sốc nhiễm khuẩn nặng kháng trị, việc sử dụng các màng lọc máu hấp phụ hoặc lọc máu liên tục có đặc tính gắn và hấp phụ tốt các chất trung gian gây viêm (Cytokine) nhằm giảm bão viêm toàn thân."
     },
     {
-        id: 95,
-        source: "LT HSCC ThS Nội 2025 - Case 17.2",
-        question: "Với bệnh nhân ngộ độc Phenobarbital (Gardenal) rất nặng (hôn mê GCS 3đ, suy hô hấp đe dọa tính mạng), điều trị tăng thải trừ chất độc tốt nhất trong trường hợp này là:",
+        id: 99,
+        source: "Chuyên đề Đột quỵ / Hồi sức thần kinh - Case 5.1",
+        question: "Bệnh nhân đột quỵ vào, HA 210/110mmHg.\nHạ HA bao nhiêu phần trăm trong 24h đầu:",
         options: [
-            "A. Dùng than hoạt đa liều",
-            "B. Bài niệu cưỡng bức",
-            "C. Dùng than hoạt đơn liều",
-            "D. Thẩm tách máu (HD)"
+            "A. 15%",
+            "B. 25%",
+            "C. 35%",
+            "D. 40%"
         ],
-        correct: 3, // D
-        explanation: "Đáp án D. Với bệnh nhân ngộ độc Phenobarbital rất nặng, Thẩm tách máu (lọc máu ngắt quãng - HD) là biện pháp mạnh nhất và nhanh nhất để thanh lọc chất độc cứu mạng."
+        correct: 0,
+        explanation: "Đáp án A. Đối với bệnh nhân nhồi máu脑 cấp không được điều trị tái tưới máu có huyết áp > 220/120 mmHg, nên hạ huyết áp từ từ và thận trọng khoảng 15% trong 24h đầu để tránh làm tụt áp lực tưới máu脑 gây rộng thêm ổ nhồi máu."
     },
     {
-        id: 96,
-        source: "LT HSCC ThS Nội 2025 - Câu 5",
-        question: "Xét nghiệm dùng để theo dõi tiến triển và đáp ứng điều trị của sốc:",
+        id: 100,
+        source: "Chuyên đề Đột quỵ / Hồi sức thần kinh - Case 5.2",
+        question: "Bệnh nhân nhồi máu脑 cấp nên duy trì đường máu trong khoảng bao nhiêu:",
         options: [
-            "A. Lactat máu động mạch",
-            "B. CVP",
-            "C. ScvO2",
-            "D. Siêu âm tim"
+            "A. 4-8 mmol/l",
+            "B. 5.6-7.1 mmol/l",
+            "C. 7.8- 10 mmol/l",
+            "D. 8- 11mmol/l"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Lactat máu động mạch là dấu ấn sinh học phản ánh mức độ thiếu oxy ở cấp độ tế bào, theo dõi độ thanh thải lactat là tiêu chuẩn vàng để đánh giá đáp ứng hồi sức."
+        correct: 2,
+        explanation: "Đáp án C. Theo khuyến cáo của AHA/ASA, mục tiêu kiểm soát đường huyết trong pha cấp của đột quỵ脑 là duy trì ở mức an toàn từ 140 - 180 mg/dL (tương đương 7,8 – 10 mmol/l)."
     },
     {
-        id: 97,
-        source: "Chống độc - Rắn cắn",
-        question: "Triệu chứng lâm sàng đặc trưng của bệnh nhân bị rắn hổ chúa cắn là:",
+        id: 101,
+        source: "Chuyên đề Đột quỵ / Hồi sức thần kinh - Case 5.3",
+        question: "Liều thuốc Alteplase tiêu chuẩn là bao nhiêu:",
+        options: [
+            "A. 0.25mg/kg, tối đa 25mg",
+            "B. 0.4mg/kg, tối đa 40mg",
+            "C. 0.6 mg/kg, tối đa 90mg",
+            "D. 0.9mg/kg, tối đa 90mg"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Theo khuyến cáo của AHA/ASA, liều tiêu chuẩn của thuốc tiêu sợi huyết Alteplase trong điều trị nhồi máu脑 cấp là 0,9 mg/kg cân nặng, và tổng liều tuyệt đối không được vượt quá 90 mg."
+    },
+    {
+        id: 102,
+        source: "Chuyên đề Sốc Phản Vệ - Case 3.1",
+        question: "Bệnh nhân nam, sau tiêm penicillin xuất hiện ngứa toàn thân, mề đay toàn thân, khó thở, thở rít, HA: 80/50 mmHg.\nBệnh nhân cần được xử trí như nào:",
+        options: [
+            "A. Dừng tiêm penicillin, tiêm adrenalin",
+            "B. Tiêm corticoid",
+            "C. Uống kháng histamin",
+            "D. Truyền dịch tinh thể"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Bệnh cảnh phản vệ cấp tính có tụt huyết áp, việc đầu tiên và quan trọng nhất là phải ngừng ngay đường tiếp xúc dị nguyên và tiêm bắp Adrenalin."
+    },
+    {
+        id: 103,
+        source: "Chuyên đề Sốc Phản Vệ - Case 3.2",
+        question: "Bệnh nhân bị phản vệ độ mấy:",
+        options: [
+            "A. Độ 1",
+            "B. Độ 2",
+            "C. Độ 3",
+            "D. Độ 4"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Bệnh nhân có tụt huyết áp (rối loạn huyết động) là tiêu chuẩn của phản vệ độ 3 (nguy kịch)."
+    },
+    {
+        id: 104,
+        source: "Chuyên đề Sốc Phản Vệ - Case 3.3",
+        question: "Bệnh nhân dễ bị ứng với nhóm kháng sinh nào khác:",
+        options: [
+            "A. Cephalosporin",
+            "B. Tetracyclin",
+            "C. Marcolid",
+            "D. Aminoglycosid"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Penicillin và Cephalosporin đều thuộc nhóm kháng sinh Beta-lactam, có cấu trúc vòng tương đồng nên tỷ lệ dị ứng chéo rất cao."
+    },
+    {
+        id: 105,
+        source: "Chuyên đề Sốc Phản Vệ - Case 3.4",
+        question: "Sau bao lâu thì test kháng sinh dị ứng cho bệnh nhân:",
+        options: [
+            "A. Ít nhất 2 tuần",
+            "B. Ít nhất 4 tuần",
+            "C. Ngay khi ổn định",
+            "D. Ít nhất 2 tháng"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Bệnh nhân cần được khám chuyên khoa dị ứng để làm test sau khi bị phản vệ ít nhất 4 tuần để hệ miễn dịch ổn định, tránh âm tính giả hoặc kích phát phản vệ lại."
+    },
+    {
+        id: 106,
+        source: "Chuyên đề Sốc Nhiễm Khuẩn - Câu 8",
+        question: "Các tình trạng sau là biểu hiện của sốc nhiễm khuẩn, TRỪ:",
+        options: [
+            "A. Huyết áp trung bình <= 65 mmHg",
+            "B. Áp lực tĩnh mạch trung tâm thấp",
+            "C. Lactat máu >= 2mmol/L",
+            "D. Phải sử dụng thuốc vận mạch để duy trì huyết áp"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Tiêu chuẩn chẩn đoán sốc nhiễm khuẩn (Sepsis-3) là tình trạng tụt huyết áp cần dùng vận mạch để duy trì MAP >= 65 mmHg và Lactat > 2 mmol/L mặc dù đã bù đủ dịch. CVP thấp không phải là tiêu chuẩn chẩn đoán."
+    },
+    {
+        id: 107,
+        source: "Chuyên đề Sốc Nhiễm Khuẩn - Câu 9",
+        question: "Nói về sốc nhiễm khuẩn: cung lượng tim ntn, sức cản ngoại vi ntn, CVP ntn:",
+        options: [
+            "A. Cung lượng tim bình thường hoặc tăng, sức cản mạch giảm, CVP bình thường hoặc giảm",
+            "B. Cung lượng tim giảm, sức cản mạch tăng, CVP tăng",
+            "C. Cung lượng tim giảm, sức cản mạch giảm, CVP tăng",
+            "D. Cung lượng tim tăng, sức cản mạch tăng, CVP giảm"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Sốc nhiễm khuẩn là sốc phân bố, đặc trưng bởi tình trạng giãn mạch hệ thống (sức cản ngoại vi giảm mạnh), do đó tim phản ứng bù trừ bằng cách tăng nhịp và tăng cung lượng tim (sốc ấm)."
+    },
+    {
+        id: 108,
+        source: "Chống độc - Rắn cắn - Câu 1",
+        question: "Triệu chứng lâm sàng của bệnh nhân bị rắn hổ chúa cắn là gì:",
         options: [
             "A. Rối loạn đông máu",
             "B. Liệt cơ, chủ yếu liệt gốc chi hơn ngọn chi",
             "C. Đồng tử co nhỏ",
             "D. Ảo giác"
         ],
-        correct: 1, // B
+        correct: 1,
         explanation: "Đáp án B. Nọc rắn hổ chúa chứa neurotoxin gây liệt cơ mềm ngoại biên, đặc trưng là liệt cơ gốc chi nhiều hơn ngọn chi, kèm sụp mi và liệt hô hấp."
     },
     {
-        id: 98,
-        source: "Chống độc - Rắn cắn",
-        question: "Triệu chứng của rắn hổ mang cắn bao gồm:",
+        id: 109,
+        source: "Chống độc - Rắn cắn - Câu 2",
+        question: "Rắn hổ mang cắn triệu chứng gì:",
         options: [
             "A. Tổn thương thần kinh + tại chỗ sưng đỏ đau 2 vết răng",
             "B. Rối loạn đông máu + tại chỗ sưng đỏ đau",
             "C. Tổn thương thần kinh + không sưng nề tại chỗ",
             "D. Rối loạn đông máu + không sưng nề tại chỗ"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Nọc rắn hổ mang (Naja) chứa neurotoxin gây liệt cơ và cytotoxin gây sưng nề, hoại tử đen tại chỗ cắn."
+        correct: 0,
+        explanation: "Đáp án A. Nọc rắn hổ mang (Naja) chứa neurotoxin gây liệt cơ (sụp mi, liệt hô hấp) và cytotoxin gây sưng nề, hoại tử đen tại chỗ cắn."
     },
     {
-        id: 99,
-        source: "Chống độc - Rửa dạ dày",
-        question: "Tư thế rửa dạ dày chuẩn cho bệnh nhân ngộ độc cấp:",
+        id: 110,
+        source: "Chống độc - Rửa dạ dày - Câu 40",
+        question: "Tư thế rửa dạ dày là thế nào (đầu thấp nghiêng trái hay phải hay nằm ngang):",
         options: [
             "A. Nghiêng trái đầu thấp",
             "B. Nghiêng phải đầu thấp",
             "C. Nằm ngang",
             "D. Nằm ngửa cổ ươn"
         ],
-        correct: 0, // A
+        correct: 0,
         explanation: "Đáp án A. Nằm nghiêng trái, đầu thấp giúp bờ cong lớn nằm thấp chứa dịch, môn vị cao hơn tâm vị hạn chế chất độc tống xuống ruột và giảm nguy cơ sặc."
     },
+    // --- 10 CÂU BỔ SUNG MỚI TỪ NGUỒN 4 ĐỂ ĐỦ 120 CÂU ---
     {
-        id: 100,
-        source: "Rối loạn điện giải - Kali",
-        question: "Bệnh nhân tăng kali máu có rối loạn nhịp điều đầu tiên cần làm là:",
+        id: 111,
+        source: "Sinh lý Lâm sàng - Dịch cơ thể & Điện giải",
+        question: "Bé gái 14 tuổi được chẩn đoán viêm cầu thận cấp, urê máu tăng, huyết áp 160/90 mmHg và phù do giữ muối nước. Bình thường thể tích dịch ngoại bào chiếm khoảng bao nhiêu % trọng lượng cơ thể?",
         options: [
-            "A. Calci gluconat tiêm tĩnh mạch",
-            "B. Insulin + glucose",
-            "C. Lợi tiểu",
-            "D. Lọc máu"
+            "A. 5% trọng lượng cơ thể",
+            "B. 20% trọng lượng cơ thể",
+            "C. 40% trọng lượng cơ thể",
+            "D. 60% trọng lượng cơ thể"
         ],
-        correct: 0, // A
-        explanation: "Đáp án A. Khi tăng Kali máu đã gây rối loạn nhịp tim (biến đổi ECG), việc khẩn cấp nhất là tiêm tĩnh mạch Calci (Gluconat hoặc Clorua) để ổn định điện thế màng tế bào cơ tim, đối kháng ngay lập tức tác dụng độc của Kali."
+        correct: 1,
+        explanation: "Đáp án B. Nước chiếm khoảng 60% trọng lượng cơ thể ở người trưởng thành, trong đó dịch nội bào chiếm 40% (2/3 tổng lượng nước) và dịch ngoại bào chiếm khoảng 20% (1/3 tổng lượng nước cơ thể)."
+    },
+    {
+        id: 112,
+        source: "Sinh lý Lâm sàng - Dịch cơ thể & Điện giải",
+        question: "Bệnh nhân nam 25 tuổi vào phòng cấp cứu có biểu hiện tăng K+ máu cấp tính. Sử dụng thuốc/biện pháp nào dưới đây giúp làm giảm nhanh nồng độ ion K+ trong dịch ngoại bào bằng cách đẩy K+ vào trong tế bào?",
+        options: [
+            "A. Atropin",
+            "B. Epinephrin (kích thích receptor Beta-2)",
+            "C. Glucagon",
+            "D. Truyền dịch đẳng trương"
+        ],
+        correct: 1,
+        explanation: "Đáp án B. Epinephrin (hoặc các thuốc kích thích giao cảm Beta-2 như Salbutamol) và Insulin có tác dụng kích thích bơm Na+-K+-ATPase hoạt động mạnh, đẩy K+ từ dịch ngoại bào vào trong tế bào, giúp giảm Kali máu nhanh chóng."
+    },
+    {
+        id: 113,
+        source: "Sinh lý Lâm sàng - Huyết học",
+        question: "Bà Nh. 50 tuổi, cắt bỏ đoạn cuối hồi tràng 3 năm trước. Khám lại vì da xanh xao, Hb 9 g/dL, MCV 110 fL (hồng cầu to). Thiếu hụt vitamin nào có nhiều khả năng nhất gây nên tình trạng này?",
+        options: [
+            "A. Vitamin A",
+            "B. Vitamin B1",
+            "C. Vitamin B6",
+            "D. Vitamin B12"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Vitamin B12 được hấp thu chủ yếu tại đoạn cuối hồi tràng nhờ gắn với Yếu tố nội (Intrinsic Factor) do tế bào viền dạ dày tiết ra. Việc cắt bỏ đoạn cuối hồi tràng làm mất nơi hấp thu B12, gây thiếu máu hồng cầu to (MCV > 100 fL) sau vài năm tích trữ."
+    },
+    {
+        id: 114,
+        source: "Sinh lý Lâm sàng - Huyết học",
+        question: "Chị M. 18 tuổi, sốt và mệt mỏi 1 tuần, vàng da nhẹ, Hb 13.8 g/dL, Bilirubin máu 42 µmol/L (trong đó 95% là Bilirubin tự do/gián tiếp), men gan bình thường. Nguyên nhân nhiều khả năng nhất là:",
+        options: [
+            "A. Ngộ độc rượu cấp",
+            "B. Thiếu enzym liên hợp glucuronyl transferase",
+            "C. Tắc mật cơ học",
+            "D. Tình trạng tan máu (tăng phá hủy hồng cầu)"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Tình trạng tăng Bilirubin máu chủ yếu là Bilirubin tự do (gián tiếp) chiếm > 85-90% kèm theo vàng da và không có dấu hiệu tổn thương gan (men gan bình thường) là đặc trưng của tăng phá hủy hồng cầu (tan máu cấp/mạn)."
+    },
+    {
+        id: 115,
+        source: "Sinh lý Lâm sàng - Huyết học",
+        question: "Anh M. 43 tuổi, bị thiếu máu nhược sắc hồng cầu nhỏ với Hb = 12.2 g/dL và MCV = 70 fL. Nguyên nhân phổ biến nhất gây nên tình trạng thiếu máu hồng cầu nhỏ này là:",
+        options: [
+            "A. Chảy máu cấp tính",
+            "B. Thiếu folat",
+            "C. Thiếu sắt",
+            "D. Thiếu vitamin B12"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Thiếu sắt là nguyên nhân hàng đầu gây ra thiếu máu hồng cầu nhỏ nhược sắc (MCV < 80 fL). Trong khi thiếu Folat và B12 gây thiếu máu hồng cầu to, mất máu cấp gây thiếu máu đẳng sắc."
+    },
+    {
+        id: 116,
+        source: "Sinh lý Lâm sàng - Huyết học",
+        question: "Bà M. 62 tuổi, bị ngứa hai bàn tay, đau đầu, chóng mặt. Công thức máu: Hồng cầu 8.2 triệu/µL, Bạch cầu 37.000/µL, Tiểu cầu 640.000/µL. Erythropoietin (EPO) máu giảm thấp. Chẩn đoán sơ bộ là:",
+        options: [
+            "A. Giảm tiểu cầu nguyên phát",
+            "B. Đa hồng cầu tương đối",
+            "C. Đa hồng cầu thứ phát",
+            "D. Đa hồng cầu nguyên phát (Polycythemia vera)"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Tăng cả 3 dòng tế bào máu (đặc biệt là hồng cầu tăng rất cao) kèm theo nồng độ Erythropoietin (EPO) bị ức chế giảm thấp là tiêu chuẩn đặc trưng của bệnh Đa hồng cầu nguyên phát (Polycythemia vera - một bệnh tăng sinh tủy mạn tính)."
+    },
+    {
+        id: 117,
+        source: "Sinh lý Lâm sàng - Đông máu",
+        question: "Bé trai 2 tuổi, dễ bị bầm máu mô mềm và chảy máu chân răng. Ông ngoại của trẻ mắc bệnh rối loạn đông máu di truyền liên quan đến nhiễm sắc thể X. Trẻ có nhiều khả năng bị thiếu hụt yếu tố đông máu nào?",
+        options: [
+            "A. Yếu tố hoạt hóa Prothrombin",
+            "B. Yếu tố II (Prothrombin)",
+            "C. Yếu tố VIII (Hemophilia A)",
+            "D. Yếu tố X"
+        ],
+        correct: 2,
+        explanation: "Đáp án C. Tiền sử ông ngoại mắc bệnh đông máu di truyền lặn trên nhiễm sắc thể X lây truyền qua mẹ sang cháu trai là kiểu di truyền kinh điển của bệnh Hemophilia A (thiếu hụt Yếu tố VIII) hoặc Hemophilia B (thiếu Yếu tố IX)."
+    },
+    {
+        id: 118,
+        source: "Sinh lý Lâm sàng - Động mạch & Huyết động",
+        question: "Anh Nh. 22 tuổi, bị tổn thương nặng động mạch cẳng chân do tai nạn. Mất khoảng 700 ml máu, HA 90/55 mmHg. Phản ứng bù trừ phù hợp nhất của hệ tuần hoàn đối với tình trạng mất máu này là:",
+        options: [
+            "A. Nhịp tim TĂNG - Hoạt tính hệ giao cảm TĂNG - Tổng sức cản ngoại vi TĂNG",
+            "B. Nhịp tim TĂNG - Hoạt tính giao cảm GIẢM - Sức cản ngoại vi GIẢM",
+            "C. Nhịp tim GIẢM - Hoạt tính giao cảm TĂNG - Sức cản ngoại vi GIẢM",
+            "D. Nhịp tim GIẢM - Hoạt tính giao cảm GIẢM - Sức cản ngoại vi TĂNG"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Khi mất máu tụt huyết áp, phản xạ thụ thể áp lực (baroreceptor) bị ức chế, dẫn đến kích hoạt hệ giao cảm trung ương: tăng tần số tim, tăng sức co bóp cơ tim và co mạch hệ thống làm TĂNG tổng sức cản ngoại vi để duy trì huyết áp động mạch."
+    },
+    {
+        id: 119,
+        source: "Sinh lý Lâm sàng - Mạch máu & Cơ xương",
+        question: "Khi thực hiện bài tập thể lực gắng sức, thay đổi sinh lý nào sau đây xảy ra tại hệ cơ xương để đáp ứng nhu cầu chuyển hóa gia tăng?",
+        options: [
+            "A. Giảm thông thoáng mạch máu đến cơ",
+            "B. Giảm lưu lượng máu đến cơ",
+            "C. Tăng nồng độ O2 trong máu tĩnh mạch cơ",
+            "D. Tăng kích thước (giãn) các tiểu động mạch đến cơ"
+        ],
+        correct: 3,
+        explanation: "Đáp án D. Khi vận động gắng sức, các chất chuyển hóa tại chỗ (Adenosin, CO2, H+, K+, Lactat) tích tụ gây giãn mạnh các tiểu động mạch cung cấp máu cho cơ xương (tăng kích thước lòng mạch), làm tăng lưu lượng máu đến cơ gấp nhiều lần."
+    },
+    {
+        id: 120,
+        source: "Sinh lý Tế Bào & Dịch cơ thể",
+        question: "Các đặc điểm sau đây mô tả đúng về dịch nội bào (ICF), ngoại trừ (TRỪ):",
+        options: [
+            "A. Dịch nội bào không có ATP",
+            "B. Dịch nội bào chứa nhiều K+ và Mg2+ hơn dịch ngoại bào",
+            "C. Dịch nội bào chứa nhiều protein và ion âm hơn dịch ngoại bào",
+            "D. Thành phần dịch nội bào khác dịch ngoại bào là nhờ tính thấm chọn lọc của màng tế bào"
+        ],
+        correct: 0,
+        explanation: "Đáp án A. Phát biểu 'Dịch nội bào không có ATP' là SAI. ATP được tổng hợp tại ty thể và tồn tại với nồng độ cao trong dịch nội bào để cung cấp năng lượng cho mọi hoạt động sống của tế bào."
     }
 ];
 
@@ -1704,17 +1953,6 @@ function jumpToQuestion() {
         currentIndex = val - 1;
         loadQuestion(currentIndex);
     }
-}
-
-function shuffleQuestions() {
-    for (let i = questionsDatabase.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [questionsDatabase[i], questionsDatabase[j]] = [questionsDatabase[j], questionsDatabase[i]];
-    }
-    userAnswers = {};
-    currentIndex = 0;
-    loadQuestion(0);
-    alert("🔀 Đã trộn toàn bộ câu hỏi thành công!");
 }
 
 document.addEventListener('keydown', (e) => {
